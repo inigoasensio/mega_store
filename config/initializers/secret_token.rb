@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-OnlineStore::Application.config.secret_token = '8d87ba83c737726debc2148f38eeebd6ff27eeec4ee81e41d9e48a03abac85797f10d43f1c068f36888480ab99ab2fbe9c39437b3302924af21789e05cbd091f'
+OnlineStore::Application.config.secret_token = 'db84f02785f8896da2be0074b2d6c8a6b7435ceecf44ccbd2a6e68fcf4e655d77459a08c5f144fcd2a71608926f8f8251b1fe86ebc4f45ad4aaf0afa877392e0'
