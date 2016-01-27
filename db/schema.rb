@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160126204420) do
+ActiveRecord::Schema.define(:version => 20160127144448) do
 
   create_table "addresses", :force => true do |t|
     t.text     "address1"
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(:version => 20160126204420) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "cardholder_name"
+    t.integer  "number"
+    t.integer  "cvv"
+    t.date     "expiration_month"
+    t.date     "expiration_year"
+    t.date     "expiration_date"
+    t.integer  "card_type"
+    t.string   "country_of_issuance"
+    t.integer  "issuing_bank"
+    t.boolean  "debit"
+    t.boolean  "prepaid"
+    t.string   "options"
+    t.integer  "token"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
 
   create_table "order_details", :force => true do |t|
     t.integer  "tracking_number"
