@@ -9,6 +9,8 @@ gem 'jquery-rails'
 
 # Add ons
 gem 'paperclip' # Add images to DB
+gem 'braintree' # Handle payments
+gem 'figaro', "~> 0.7.0" # Handle credentials
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
