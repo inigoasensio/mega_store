@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.integer :phone
       t.attachment :avatar
+      t.references :addressable, polymorphic: true
 
       t.timestamps
     end

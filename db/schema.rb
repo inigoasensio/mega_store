@@ -20,16 +20,19 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
     t.string   "state"
     t.integer  "postal_code"
     t.string   "country"
-    t.integer  "address_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "category_id"
+    t.integer  "subcategories_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -55,14 +58,14 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
 
   create_table "order_details", :force => true do |t|
     t.integer  "tracking_number"
-    t.decimal  "price",           :precision => 10, :scale => 0
+    t.decimal  "price",           :precision => 5,  :scale => 2
     t.integer  "quantity"
     t.decimal  "discount",        :precision => 10, :scale => 0
     t.decimal  "total",           :precision => 10, :scale => 0
-    t.integer  "currency"
+    t.string   "currency"
     t.integer  "size"
-    t.integer  "color"
-    t.integer  "status"
+    t.string   "color"
+    t.string   "status"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
   end
@@ -84,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "payments", :force => true do |t|
-    t.integer  "status"
-    t.integer  "payment_type"
+    t.string   "status"
+    t.string   "payment_type"
     t.datetime "date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -117,8 +120,10 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
 
   create_table "suppliers", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -131,6 +136,8 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end

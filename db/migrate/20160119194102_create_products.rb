@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :quantity_unit
-      t.decimal :unit_price, :precision => 5, :scale => 2
+      t.decimal :unit_price, precision: 5, scale: 2
       t.attachment :image
       t.references :category
       t.references :supplier
