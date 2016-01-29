@@ -61,14 +61,19 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
     t.decimal  "price",           :precision => 5,  :scale => 2
     t.integer  "quantity"
     t.decimal  "discount",        :precision => 10, :scale => 0
-    t.decimal  "total",           :precision => 10, :scale => 0
+    t.decimal  "total",           :precision => 5,  :scale => 2
     t.string   "currency"
-    t.integer  "size"
+    t.string   "size"
     t.string   "color"
     t.string   "status"
+    t.integer  "order_id"
+    t.integer  "product_id"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
   end
+
+  add_index "order_details", ["order_id"], :name => "index_order_details_on_order_id"
+  add_index "order_details", ["product_id"], :name => "index_order_details_on_product_id"
 
   create_table "orders", :force => true do |t|
     t.integer  "tracking_number"
@@ -90,9 +95,14 @@ ActiveRecord::Schema.define(:version => 20160127144448) do
     t.string   "status"
     t.string   "payment_type"
     t.datetime "date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
+    t.integer  "credit_card_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
+
+  add_index "payments", ["credit_card_id"], :name => "index_payments_on_credit_card_id"
+  add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
 
   create_table "products", :force => true do |t|
     t.string   "name"

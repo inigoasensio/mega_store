@@ -1,5 +1,6 @@
 class CreditCard < ActiveRecord::Base
   belongs_to :user
+  belongs_to :payment
   has_many :addresses, as: :addressable
 
   attr_accessible :card_type, :cardholder_name, :country_of_issuance, :cvv, :debit,

@@ -4,6 +4,8 @@ class CreatePayments < ActiveRecord::Migration
       t.string :status
       t.string :payment_type
       t.datetime :date
+      t.references :user
+      t.references :credit_card
 
       t.timestamps
     end

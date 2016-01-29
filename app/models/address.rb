@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
   belongs_to :addressable, polymorphic: true
 
-  attr_accessible :address1, :address2, :address_type, :city, :country, :postal_code, :state
+  validates :address1, :address_type, :city, :country, :postal_code, :state, presence: true
 end

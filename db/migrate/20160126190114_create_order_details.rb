@@ -10,8 +10,12 @@ class CreateOrderDetails < ActiveRecord::Migration
       t.string :size
       t.string :color
       t.string :status
+      t.references :order
+      t.references :product
 
       t.timestamps
     end
+    add_index :order_details, :order_id
+    add_index :order_details, :product_id
   end
 end
