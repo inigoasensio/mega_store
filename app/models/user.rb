@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :last_name, :name, :password, :phone
 
-  validates :name, :last_name, :username, :email, :password, presence: true
+  validates :name, :last_name, :email, :password, presence: true
   validates :password, confirmation: true
   # Image Validations
-  validates_attachment :avatar, presence: true, content_type: { content_type: "image/jpeg" },
-      size: { in: 0..10.kilobytes }
+  has_attached_file :avatar
+  validates_attachment :avatar, presence: true, size: { in: 0..1.megabytes }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end

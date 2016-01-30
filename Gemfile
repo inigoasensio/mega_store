@@ -8,9 +8,10 @@ gem 'mysql2', '~> 0.3.10'
 gem 'jquery-rails'
 
 # Add ons
+gem 'devise' # User authentication
 gem 'paperclip' # Add images to DB
 gem 'braintree' # Handle payments
-gem 'figaro', "~> 0.7.0" # Handle credentials
+gem 'figaro', "~> 0.7.0" # Handle secrets/credentials
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
