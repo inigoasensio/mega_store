@@ -1,9 +1,11 @@
 class OrderDetail < ActiveRecord::Base
+  # Associations
   belongs_to :order
   belongs_to :product
 
-  attr_accessible :color, :currency, :discount, :price, :quantity, :size, :status, :total,
-    :tracking_number
+  # Attributes
+  attr_accessible :tracking_number, :currency, :price, :quantity, :size, :status, :total
 
-  validates :currency, :price, :quantity, :status, :total, :tracking_number, presence: true
+  # Validations
+  validates :tracking_number, :currency, :price, :quantity, :status, :total, presence: true
 end

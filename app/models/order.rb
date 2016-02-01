@@ -1,9 +1,13 @@
 class Order < ActiveRecord::Base
+  # Associations
   belongs_to :user
-  has_one :payment
-  has_one :shipper
+  belongs_to :shipper
+  has_many :payments
+  has_one :order_detail
 
-  attr_accessible :order_date, :ship_date, :status, :tracking_number
+  # Attributes
+  attr_accessible :order_date, :ship_date, :status
 
-  validates :freight, :order_date, :sales_tax, :ship_date, :status, :tracking_number, presence: true
+  # Validations
+  validates :order_date, :ship_date, :sales_tax, :status, presence: true
 end

@@ -3,8 +3,15 @@ require 'rails_helper'
 RSpec::describe User, type: :model do
 
   describe 'associations' do
-    it { is_expected.to have_one(:credit_card) }
+    it { is_expected.to have_many(:credit_cards) }
+    it { is_expected.to have_many(:payments).through(:credit_cards) }
+    it { is_expected.to have_many(:orders) }
     it { is_expected.to have_many(:addresses) }
+  end
+
+  describe 'attributes' do
+    it { is_expected.to allow_mass_assignment_of(:email) }
+    it { is_expected.to allow_mass_assignment_of(:password) }
   end
 
   describe 'validations' do

@@ -7,6 +7,7 @@ class CreateOrderDetails < ActiveRecord::Migration
       t.decimal :discount
       t.decimal :total, precision: 5, scale: 2
       t.string :currency
+      t.integer :freight
       t.string :size
       t.string :color
       t.string :status

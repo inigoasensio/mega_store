@@ -4,12 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
+  # Attributes
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  has_one :credit_card
-  has_many :addresses, as: :addressable
-  has_one :payment, through: :credit_card
 
+  # Associations
+  has_many :credit_cards
+  has_many :payments, through: :credit_cards
+  has_many :orders
+  has_many :addresses, as: :addressable
+
+  # Validations
   validates :name, :last_name, :email, :password, presence: true
   validates :password, confirmation: true
   # Image Validations

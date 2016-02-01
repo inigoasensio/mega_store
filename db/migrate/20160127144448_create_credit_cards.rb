@@ -15,9 +15,11 @@ class CreateCreditCards < ActiveRecord::Migration
       t.string :options
       t.integer :token
       t.references :user
+      t.references :payment
 
       t.timestamps
     end
     add_index :credit_cards, :user_id
+    add_index :credit_cards, :payment_id
   end
 end
