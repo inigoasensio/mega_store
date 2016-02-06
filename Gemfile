@@ -7,6 +7,9 @@ gem 'mysql2', '~> 0.3.10'
 # Rails requirements
 gem 'jquery-rails'
 
+# Front-end Framework
+gem 'foundation-rails'
+
 # Add ons
 gem 'devise' # User authentication
 gem 'paperclip' # Add images to DB
@@ -26,4 +29,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'pry-rails'
 end
