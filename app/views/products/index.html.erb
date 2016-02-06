@@ -1,0 +1,18 @@
+<h1><%= params[:controller].titleize %></h1>
+<div class='column'>
+  <ul class='no-bullet'>
+    <% @products.each do |product| %>
+      <li class='large-3 medium-4 column'>
+      <div class=''>
+        <% image_tag(product.image.url, size: '300x400', class: 'thumbnail') %>
+        <div class=''>
+          <h4><%= product.name %><span> <%= product.unit_price %> </span></h4>
+        </div>
+        <div class=''>
+
+        </div>
+      </div>
+        </li>
+      <% end %>
+  </ul>
+</div>
