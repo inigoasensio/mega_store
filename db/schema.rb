@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "quantity_unit"
+    t.integer  "unit_quantity"
     t.decimal  "unit_price",         :precision => 5, :scale => 2
     t.string   "image_file_name"
     t.string   "image_content_type"

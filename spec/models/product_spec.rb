@@ -8,10 +8,18 @@ RSpec::describe Product, type: :model do
     it { is_expected.to have_many(:order_details) }
   end
 
+  describe 'attributes' do
+    it { is_expected.to allow_mass_assignment_of(:name) }
+    it { is_expected.to allow_mass_assignment_of(:description) }
+    it { is_expected.to allow_mass_assignment_of(:unit_price) }
+    it { is_expected.to allow_mass_assignment_of(:unit_quantity) }
+    it { is_expected.to allow_mass_assignment_of(:image) }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:description) }
-    it { is_expected.to validate_presence_of(:quantity_unit) }
+    it { is_expected.to validate_presence_of(:unit_quantity) }
 
     it { is_expected.to validate_attachment_presence(:image) }
     it { is_expected.to validate_attachment_content_type(:image).

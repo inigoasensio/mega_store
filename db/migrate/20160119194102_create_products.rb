@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.text :description
-      t.integer :quantity_unit
+      t.integer :unit_quantity
       t.decimal :unit_price, precision: 5, scale: 2
       t.attachment :image
       t.references :category

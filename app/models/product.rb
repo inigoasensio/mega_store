@@ -5,10 +5,10 @@ class Product < ActiveRecord::Base
   has_many :order_details
 
   # Attributes
-  attr_accessible :name, :description, :quantity_unit
+  attr_accessible :name, :description, :unit_price, :unit_quantity, :image
 
   # Validations
-  validates :name, :description, :quantity_unit, presence: true
+  validates :name, :description, :unit_quantity, presence: true
   # Image Validations
   has_attached_file :image
   validates_attachment :image, presence: true, size: { in: 0..1.megabytes }
