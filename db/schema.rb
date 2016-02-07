@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "state"
     t.integer  "postal_code"
     t.string   "country"
-    t.string   "address_type"
+    t.string   "type"
     t.integer  "addressable_id"
     t.string   "addressable_type"
     t.datetime "created_at",       :null => false
@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "name"
     t.text     "description"
     t.integer  "category_id"
-    t.integer  "subcategories_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -109,16 +108,17 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
 
   create_table "products", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "supplier_id"
     t.string   "name"
     t.text     "description"
-    t.integer  "unit_quantity"
-    t.decimal  "unit_price",         :precision => 5, :scale => 2
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "category_id"
-    t.integer  "supplier_id"
+    t.integer  "unit_quantity"
+    t.decimal  "unit_price",         :precision => 5, :scale => 2
+    t.date     "voided_at"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end
