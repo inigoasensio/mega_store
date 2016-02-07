@@ -7,8 +7,15 @@ class ProductsController < ApplicationController
     respond_with(@products)
   end
 
+  # GET product
+  def show
+    @product = Product.find(params[:id])
+    respond_with(@product)
+  end
+
   # DELETE products
   def destroy
-    self.update_attributes(voided_at: Date.current)
+    @product = Product.find(params[:id])
+    @product.update_attribute(voided_at: Date.current)
   end
 end

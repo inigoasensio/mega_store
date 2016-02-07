@@ -4,6 +4,6 @@ OnlineStore::Application.routes.draw do
   # Devise views
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
 
-  resources :products, only: [:show, :index]
+  resources :products, only: [:index, :show, :destroy]
 
 end

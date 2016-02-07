@@ -20,3 +20,16 @@ products.each do |product|
   Product.create!(product)
   puts "product #{product[:name]} seed data generated"
 end
+
+categories = [
+  { name: 'Electronics' },
+  { name: 'Computer' },
+  { name: 'Smartphone' },
+  { name: 'Food' },
+  { name: 'Clothes' }
+]
+
+categories.each do |category|
+  Category.create!(category)
+  puts "category #{category[:name]} seed data generated"
+end

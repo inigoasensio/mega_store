@@ -25,4 +25,8 @@ RSpec::describe OrderDetail, type: :model do
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:total) }
   end
+
+  describe 'callbacks' do
+
+  end
 end
