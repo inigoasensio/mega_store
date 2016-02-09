@@ -29,6 +29,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-activemodel-mocks'
   gem 'shoulda-matchers'
   gem 'pry-rails'
 end

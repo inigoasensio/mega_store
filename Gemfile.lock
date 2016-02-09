@@ -122,6 +122,10 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rspec-activemodel-mocks (1.0.2)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -181,6 +185,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 3.2.22)
+  rspec-activemodel-mocks
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers
