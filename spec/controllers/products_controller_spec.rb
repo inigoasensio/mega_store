@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProductsController, :type => :controller do
 
-  routes { OnlineStore::Application.routes }
+  let(:product) { stub_model(Product, id: 8) }
 
   describe 'GET #index' do
     it 'returns all products' do
@@ -12,15 +12,24 @@ RSpec.describe ProductsController, :type => :controller do
   end
 
   describe 'GET #show' do
-    it 'shows a product' do
-      get :show, id: @product.id
+    it 'finds a product with given id' do
+      allow(Product).to receive(:find).and_return product
+      get :show, id: '8'
+      expect(assigns(:product)).to eq(product)
+    end
+
+    it '' do
+      allow(Product).to receive(:find).and_return product
+      get :show, id: nil
+      expect(response).to have_http_status(400)
     end
   end
 
   describe 'DELETE #destroy' do
     it 'soft deletes a product' do
-      delete :destroy, id: @product.id
-      #expect(subject).to receive(:update_attribute)
+      allow(Product).to receive(:find).with('11')
+      allow(Product).to receive(:update_attribute).with(Date)
+      delete :destroy, id: '11'
     end
   end
 
