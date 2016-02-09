@@ -20,6 +20,6 @@ class OrderDetail < ActiveRecord::Base
   end
 
   def assign_tracking_number
-    self.update_attribute(:tracking_number, tracking_number+1)
+    self.increment(:tracking_number, by = 1)
   end
 end
