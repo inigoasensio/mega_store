@@ -14,10 +14,19 @@ class User < ActiveRecord::Base
   has_many :addresses, as: :addressable
 
   # Validations
-  validates :name, :last_name, :email, :password, presence: true
+  validates :email, :password, presence: true
   validates :password, confirmation: true
   # Image Validations
   has_attached_file :avatar
-  validates_attachment :avatar, presence: true, size: { in: 0..1.megabytes }
+  validates_attachment :avatar, size: { in: 0..1.megabytes }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  def cart_count
+
+  end
+
+  def get_cart_products
+    cart_orders_id = OrderDetail.pluck(:product_id)
+    Product.find(cart_orders_id)
+  end
 end

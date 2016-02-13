@@ -1,26 +1,24 @@
 class OrdersController < ApplicationController
   respond_to :html, :json
+  helper_method :current_order
 
   # GET
   def index
-    @orders = order.all
-    respond_with(@orders)
-  end
-
-  def new
-    @order = order.new(params)
+    @orders = Order.all
   end
 
   # POST create
   def create
-    @order = order.new(params)
+    @order = current_order
+    @order_detail = OrderDetail.new(params[:order_detail])
+    @order.order_detail = @order_detail
     @order.save
+    session[:order_id] = @order.id
   end
 
   # GET
   def show
     find_order
-    respond_with(@order)
   end
 
   # PUT
@@ -37,6 +35,6 @@ class OrdersController < ApplicationController
   private
 
   def find_order
-      @order = order.find(params[:id])
-    end
+    @order = Order.find(params[:id])
+  end
 end

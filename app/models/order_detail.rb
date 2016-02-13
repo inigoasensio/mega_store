@@ -4,7 +4,7 @@ class OrderDetail < ActiveRecord::Base
   belongs_to :product
 
   # Attributes
-  attr_accessible :tracking_number, :currency, :price, :quantity, :size, :status, :total
+  attr_accessible :tracking_number, :currency, :price, :quantity, :size, :status, :total, :product_id
 
   # Validations
   validates :tracking_number, :currency, :price, :quantity, :status, :total, presence: true

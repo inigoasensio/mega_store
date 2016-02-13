@@ -4,23 +4,19 @@ class ProductsController < ApplicationController
   # GET products
   def index
     @products = Product.all
-    respond_with(@products)
-  end
-
-  def new
-    @product = Product.new(params)
+    @order_detail = OrderDetail.new
+    current_order.order_detail = @order_detail
   end
 
   # POST create
   def create
-    @product = Product.new(params)
+    @product = Product.new(params[:product])
     @product.save
   end
 
   # GET product
   def show
     find_product
-    respond_with(@product)
   end
 
   # PUT
