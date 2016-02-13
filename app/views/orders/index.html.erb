@@ -1,0 +1,17 @@
+<div class='row column'>
+  <h1><%= params[:controller].titleize %></h1>
+  <hr>
+</div>
+
+<% @orders.each do |order| %>
+  <table>
+    <tr>
+      <th></th>
+      <th>Tracking Number</th>
+    </tr>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.order_detail.tracking_number %></td>
+    </tr>
+  </table>
+<% end %>

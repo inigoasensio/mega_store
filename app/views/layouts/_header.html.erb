@@ -6,6 +6,8 @@
       <li class='menu-text'>
         <i class='fi-shopping-cart'></i> <%= Rails.application.class.parent_name.titleize %>
       </li>
+      <li><%= link_to 'Products', products_path %></li>
+      <li><%= link_to 'Orders', new_order_path %></li>
     </ul>
   </div>
 
@@ -13,6 +15,11 @@
     <ul class='menu'>
       <li><%= link_to 'Register', new_user_registration_path %></li>
       <li><%= link_to 'Login', new_user_session_path %></li>
+      <li><%= link_to carts_show_path, class: "button" do %>
+          <i class="fi-shopping-cart"></i>
+          <span><%=  %></span> Cart
+        <%end%>
+        </li>
     </ul>
   </div>
 
