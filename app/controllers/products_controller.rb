@@ -1,12 +1,10 @@
 class ProductsController < ApplicationController
   respond_to :html, :json
-  before_filter :authenticate_user!
 
   # GET products
   def index
     @products = Product.all
-#    @order_items = OrderItem.new
-#   current_order.order_items = @order_items
+    @order = current_order
   end
 
   # POST create

@@ -7,17 +7,23 @@
         <i class='fi-shopping-cart'></i> <%= Rails.application.class.parent_name.titleize %>
       </li>
       <li><%= link_to 'Products', products_path %></li>
-      <li><%= link_to 'Orders', new_order_path %></li>
+      <li><%= link_to 'Orders', orders_path %></li>
     </ul>
   </div>
 
   <div class='top-bar-right'>
     <ul class='menu'>
-      <li><%= link_to 'Register', new_user_registration_path %></li>
-      <li><%= link_to 'Login', new_user_session_path %></li>
-      <li><%= link_to carts_show_path, class: "button" do %>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+        <li class='menu-text'><%= current_user.email %></li>
+      <% else %>
+        <li><%= link_to 'Register', new_user_registration_path %></li>
+        <li><%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
+      <li><%= link_to orders_path, class: "button" do %>
           <i class="fi-shopping-cart"></i>
-          <span><%=  %></span> Cart
+          My Cart
+          <span><%= current_order.order_items.count %></span>
         <%end%>
         </li>
     </ul>

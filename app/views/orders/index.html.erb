@@ -6,12 +6,12 @@
 <% @orders.each do |order| %>
   <table>
     <tr>
-      <th></th>
       <th>Tracking Number</th>
+      <th>Product</th>
     </tr>
     <tr>
       <td><%= order.id %></td>
-      <td><%= order.order_items.tracking_number %></td>
+      <td><%= order.order_items.product %></td>
     </tr>
   </table>
 <% end %>

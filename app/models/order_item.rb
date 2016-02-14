@@ -7,7 +7,7 @@ class OrderItem < ActiveRecord::Base
   attr_accessible :tracking_number, :currency, :price, :quantity, :size, :status, :total, :product_id
 
   # Validations
-  validates :tracking_number, :currency, :price, :quantity, :status, :total, presence: true
+  validates :tracking_number, presence: true #:currency, :quantity, :status, :total:price,
 
   # Callbacks
   before_save :set_default_tracking_number

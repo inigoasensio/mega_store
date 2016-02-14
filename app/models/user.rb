@@ -20,13 +20,4 @@ class User < ActiveRecord::Base
   has_attached_file :avatar
   validates_attachment :avatar, size: { in: 0..1.megabytes }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
-  def cart_count
-    get_cart_products.count
-  end
-
-  def get_cart_products
-    cart_orders_id = OrderItem.pluck(:product_id)
-    Product.find(cart_orders_id)
-  end
 end

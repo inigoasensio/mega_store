@@ -3,17 +3,20 @@ class OrdersController < ApplicationController
 
   # GET
   def index
-    binding.pry
     @orders = Order.all
+    @order_items = current_order.order_items
   end
 
   # POST create
   def create
-    @product = Product.find(params[:order_item][:product_id])
     @order = current_order
-    #@order_items = @order.order_items.new(params[:order_items])
-    @order.save
-    session[:order_id] = @order.id
+    @order_items = @order.order_items.new(product_id: params[:order][:product_id])
+    if @order.save
+      redirect_to orders_path
+      flash[:success]
+    else
+      @order.errors
+    end
   end
 
   # GET

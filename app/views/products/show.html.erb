@@ -8,7 +8,7 @@
 
 <div class='large-9 small-12 column'>
   <h4><%= @product.name %></h4>
-  <p class='label radius'><%= @product.unit_price %><i class='fi-euro'></i></p>
+  <p class='label radius'><%= number_to_currency(@product.unit_price, unit: '$') %></p>
 
   <p><%= @product.description %></p>
 </div>

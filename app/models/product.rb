@@ -4,6 +4,8 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :order_items
 
+  accepts_nested_attributes_for :order_items
+
   # Attributes
   attr_accessible :name, :description, :unit_price, :unit_quantity, :image
 

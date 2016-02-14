@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ProductsController, :type => :controller do
 
+  before do
+    sign_in @user
+  end
+
   let(:product) { stub_model(Product, id: 8) }
 
   describe 'GET #index' do
@@ -11,25 +15,25 @@ RSpec.describe ProductsController, :type => :controller do
     end
   end
 
+  describe 'POST #create' do
+    it 'creates a new product' do
+      post :create
+    end
+  end
+
   describe 'GET #show' do
     it 'finds a product with given id' do
       allow(Product).to receive(:find).and_return product
       get :show, id: '8'
       expect(assigns(:product)).to eq(product)
     end
-
-    it '' do
-      allow(Product).to receive(:find).and_return product
-      get :show, id: nil
-      expect(response).to have_http_status(400)
-    end
   end
 
   describe 'DELETE #destroy' do
     it 'soft deletes a product' do
-      allow(Product).to receive(:find).with('11')
-      allow(Product).to receive(:update_attribute).with(Date)
-      delete :destroy, id: '11'
+      allow(Product).to receive(:find).and_return product
+      delete :destroy, id: '8'
+      expect(response).to have_http_status(:ok)
     end
   end
 
