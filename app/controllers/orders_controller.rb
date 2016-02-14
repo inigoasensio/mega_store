@@ -1,17 +1,17 @@
 class OrdersController < ApplicationController
   respond_to :html, :json
-  helper_method :current_order
 
   # GET
   def index
+    binding.pry
     @orders = Order.all
   end
 
   # POST create
   def create
+    @product = Product.find(params[:order_item][:product_id])
     @order = current_order
-    @order_detail = OrderDetail.new(params[:order_detail])
-    @order.order_detail = @order_detail
+    #@order_items = @order.order_items.new(params[:order_items])
     @order.save
     session[:order_id] = @order.id
   end

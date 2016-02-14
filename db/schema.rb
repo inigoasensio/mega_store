@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   add_index "credit_cards", ["payment_id"], :name => "index_credit_cards_on_payment_id"
   add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
 
-  create_table "order_details", :force => true do |t|
+  create_table "order_items", :force => true do |t|
     t.integer  "tracking_number"
     t.decimal  "price",           :precision => 5,  :scale => 2
     t.integer  "quantity"
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.datetime "updated_at",                                     :null => false
   end
 
-  add_index "order_details", ["order_id"], :name => "index_order_details_on_order_id"
-  add_index "order_details", ["product_id"], :name => "index_order_details_on_product_id"
+  add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
+  add_index "order_items", ["product_id"], :name => "index_order_items_on_product_id"
 
   create_table "orders", :force => true do |t|
     t.datetime "order_date"

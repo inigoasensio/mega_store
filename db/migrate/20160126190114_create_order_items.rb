@@ -1,6 +1,6 @@
-class CreateOrderDetails < ActiveRecord::Migration
+class CreateOrderItems < ActiveRecord::Migration
   def change
-    create_table :order_details do |t|
+    create_table :order_items do |t|
       t.integer :tracking_number
       t.decimal :price, precision: 5, scale: 2
       t.integer :quantity
@@ -16,7 +16,7 @@ class CreateOrderDetails < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :order_details, :order_id
-    add_index :order_details, :product_id
+    add_index :order_items, :order_id
+    add_index :order_items, :product_id
   end
 end

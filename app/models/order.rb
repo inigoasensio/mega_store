@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :shipper
   has_many :payments
-  has_one :order_detail
+  has_many :order_items
 
   # Attributes
   attr_accessible :order_date, :ship_date, :status

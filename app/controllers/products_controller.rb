@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
   respond_to :html, :json
+  before_filter :authenticate_user!
 
   # GET products
   def index
     @products = Product.all
-    @order_detail = OrderDetail.new
-    current_order.order_detail = @order_detail
+#    @order_items = OrderItem.new
+#   current_order.order_items = @order_items
   end
 
   # POST create
@@ -17,11 +18,6 @@ class ProductsController < ApplicationController
   # GET product
   def show
     find_product
-  end
-
-  # PUT
-  def update
-
   end
 
   # DELETE products
