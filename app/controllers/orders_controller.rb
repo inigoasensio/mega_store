@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   # POST create
   def create
     @order = current_order
-    @order_items = @order.order_items.new(product_id: params[:order][:product_id])
+    @order_items = @order.order_items.build
     if @order.save
       flash[:success]
       redirect_to orders_path

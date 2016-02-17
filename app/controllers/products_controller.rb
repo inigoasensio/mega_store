@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET products
   def index
     @products = Product.all
-    @order = current_order
+    @order_items = current_order.order_items.build
   end
 
   # POST create

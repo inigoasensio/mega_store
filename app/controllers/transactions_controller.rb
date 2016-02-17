@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
   respond_to :html, :json
-  before_action :authenticate_user!
-  before_action :check_cart!
+  #before_action :authenticate_user!
+  #before_action :check_cart!
 
   def new
   end

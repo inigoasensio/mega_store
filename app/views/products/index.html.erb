@@ -18,7 +18,7 @@
           <h4><%= product.name %></h4>
         </div>
         <div class=''>
-          <%= form_for @order, url: orders_path, method: :post do |f| %>
+          <%= form_for @order_items, url: orders_path, method: :post do |f| %>
             <%= f.hidden_field :product_id, value: product.id %>
             <%= f.submit 'Add to Cart', class: 'button expanded' %>
           <% end %>
