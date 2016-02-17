@@ -19,6 +19,7 @@ OnlineStore::Application.routes.draw do
   end
 
   authenticate :user do
-    resources :products, :payments, :orders
+    resources :products, :orders
+    resources :transactions, only: [:new, :create]
   end
 end

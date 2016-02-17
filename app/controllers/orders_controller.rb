@@ -12,8 +12,8 @@ class OrdersController < ApplicationController
     @order = current_order
     @order_items = @order.order_items.new(product_id: params[:order][:product_id])
     if @order.save
-      redirect_to orders_path
       flash[:success]
+      redirect_to orders_path
     else
       @order.errors
     end
