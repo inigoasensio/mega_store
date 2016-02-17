@@ -4,7 +4,7 @@ RSpec::describe User, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:credit_cards) }
-    it { is_expected.to have_many(:payments).through(:credit_cards) }
+    it { is_expected.to have_many(:purchases).through(:credit_cards) }
     it { is_expected.to have_many(:orders) }
     it { is_expected.to have_many(:addresses) }
   end

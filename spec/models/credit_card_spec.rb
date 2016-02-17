@@ -4,7 +4,7 @@ RSpec::describe CreditCard, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:payment) }
+    it { is_expected.to belong_to(:purchase) }
     it { is_expected.to have_many(:addresses) }
   end
 

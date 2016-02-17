@@ -1,4 +1,4 @@
-class Payment < ActiveRecord::Base
+class Purchase < ActiveRecord::Base
   # Associations
   belongs_to :user
   belongs_to :credit_card
@@ -7,8 +7,8 @@ class Payment < ActiveRecord::Base
   has_one :billing_address, class_name: 'Address', as: :addressable
 
   # Attributes
-  attr_accessible :status, :payment_type, :date
+  attr_accessible :status, :purchase_type, :date
 
   # Validations
-  validates :payment_type, :date, :status, presence: true
+  validates :status, :purchase_type, :date, presence: true
 end

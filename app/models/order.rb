@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   # Associations
   belongs_to :user
   belongs_to :shipper
-  has_many :payments
+  has_many :purchases
   has_many :order_items
 
   accepts_nested_attributes_for :order_items

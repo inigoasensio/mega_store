@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   # Associations
   has_many :credit_cards
-  has_many :payments, through: :credit_cards
-  has_many :orders
+  has_many :purchases
+  has_many :orders, through: :purchases
   has_many :addresses, as: :addressable
 
   # Validations
@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
   has_attached_file :avatar
   validates_attachment :avatar, size: { in: 0..1.megabytes }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+
+  def get_cart_products
+    OrderItems.find_all_by_id(:id)
+  end
 end

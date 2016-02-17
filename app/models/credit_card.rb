@@ -1,7 +1,7 @@
 class CreditCard < ActiveRecord::Base
   # Associations
   belongs_to :user
-  belongs_to :payment
+  belongs_to :purchase
   has_many :addresses, as: :addressable
 
   # Attributes

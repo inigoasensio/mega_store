@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "options"
     t.integer  "token"
     t.integer  "user_id"
-    t.integer  "payment_id"
+    t.integer  "purchase_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
 
-  add_index "credit_cards", ["payment_id"], :name => "index_credit_cards_on_payment_id"
+  add_index "credit_cards", ["purchase_id"], :name => "index_credit_cards_on_purchase_id"
   add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
 
   create_table "order_items", :force => true do |t|
@@ -92,21 +92,6 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   add_index "orders", ["shipper_id"], :name => "index_orders_on_shipper_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
-  create_table "payments", :force => true do |t|
-    t.string   "status"
-    t.string   "payment_type"
-    t.datetime "date"
-    t.integer  "user_id"
-    t.integer  "credit_card_id"
-    t.integer  "order_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "payments", ["credit_card_id"], :name => "index_payments_on_credit_card_id"
-  add_index "payments", ["order_id"], :name => "index_payments_on_order_id"
-  add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
-
   create_table "products", :force => true do |t|
     t.integer  "category_id"
     t.integer  "supplier_id"
@@ -125,6 +110,21 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
 
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
   add_index "products", ["supplier_id"], :name => "index_products_on_supplier_id"
+
+  create_table "purchases", :force => true do |t|
+    t.string   "status"
+    t.string   "purchase_type"
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "credit_card_id"
+    t.integer  "order_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "purchases", ["credit_card_id"], :name => "index_purchases_on_credit_card_id"
+  add_index "purchases", ["order_id"], :name => "index_purchases_on_order_id"
+  add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
 
   create_table "shippers", :force => true do |t|
     t.string   "name"
