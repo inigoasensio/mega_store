@@ -1,5 +1,10 @@
-<div class='row column'>
-  <h1><%= params[:controller].titleize %></h1>
+<div class='row'>
+  <div class='large-2 columns'>
+    <h1><%= params[:controller].titleize %></h1>
+  </div>
+  <div class='large-2 columns'>
+    <%= link_to "Create Product", new_product_path, class: 'button' %>
+  </div>
   <hr>
 </div>
 
@@ -12,16 +17,10 @@
           <%= image_tag(product.image.url) %>
         <% end %>
         <div class=''>
-          <p><%= number_to_currency(product.unit_price, unit: '$') %></p>
-        </div>
-        <div class=''>
           <h4><%= product.name %></h4>
         </div>
         <div class=''>
-          <%= form_for @order_items, url: orders_path, method: :post do |f| %>
-            <%= f.hidden_field :product_id, value: product.id %>
-            <%= f.submit 'Add to Cart', class: 'button expanded' %>
-          <% end %>
+          <%= render 'carts/add_to_cart', product: product, order_item: @order_item %>
         </div>
       </div>
       </li>

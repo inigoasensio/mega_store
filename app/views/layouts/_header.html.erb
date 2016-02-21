@@ -7,7 +7,7 @@
         <i class='fi-shopping-cart'></i> <%= Rails.application.class.parent_name.titleize %>
       </li>
       <li><%= link_to 'Products', products_path %></li>
-      <li><%= link_to 'Orders', orders_path %></li>
+      <li><%= link_to 'Orders', order_items_path %></li>
     </ul>
   </div>
 
@@ -20,12 +20,7 @@
         <li><%= link_to 'Register', new_user_registration_path %></li>
         <li><%= link_to 'Login', new_user_session_path %></li>
       <% end %>
-      <li><%= link_to orders_path, class: "button" do %>
-          <i class="fi-shopping-cart"></i>
-          My Cart
-          <span><%= current_order.order_items.count %></span>
-        <%end%>
-        </li>
+      <li><%= render 'layouts/cart_items' %></li>
     </ul>
   </div>
 

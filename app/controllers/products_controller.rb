@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET products
   def index
     @products = Product.all
-    @order_items = current_order.order_items.build
+    @order_item = current_order.order_items.new
   end
 
   # POST create
@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
   # GET product
   def show
     find_product
+    @order_item = current_order.order_items.new
   end
 
   # DELETE products
