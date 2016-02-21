@@ -1,7 +1,4 @@
 OnlineStore::Application.routes.draw do
-  # root
-  root :to => 'products#index'
-
   # Devise authenticated routes
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
 
@@ -19,7 +16,8 @@ OnlineStore::Application.routes.draw do
   end
 
   authenticate :user do
-    resources :products, :orders
+    resources :products, :order_items
     resources :transactions, only: [:new, :create]
+    resource :cart, only: [:show]
   end
 end

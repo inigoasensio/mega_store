@@ -13,7 +13,15 @@ class OrderItem < ActiveRecord::Base
   before_save :set_default_tracking_number
   after_initialize :assign_tracking_number
 
+  def total
+    price * quantity
+  end
+
   private
+
+  def set_default_quantity
+    self.quantity ||= 1
+  end
 
   def set_default_tracking_number
     self.tracking_number ||= 1

@@ -19,11 +19,6 @@ RSpec::describe OrderItem, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:tracking_number) }
-    it { is_expected.to validate_presence_of(:price) }
-    it { is_expected.to validate_presence_of(:currency) }
-    it { is_expected.to validate_presence_of(:quantity) }
-    it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to validate_presence_of(:total) }
   end
 
   describe 'callbacks' do

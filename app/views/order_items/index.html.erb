@@ -3,15 +3,15 @@
   <hr>
 </div>
 
-<% @orders.each do |order| %>
+<% @order_items.each do |order_item| %>
   <table>
     <tr>
       <th>Tracking Number</th>
       <th>Product</th>
     </tr>
     <tr>
-      <td><%= order.id %></td>
-      <td><%= order.order_items.product %></td>
+      <td><%= order_item.id %></td>
+      <td><%= order_item.product.name %></td>
     </tr>
   </table>
 <% end %>
