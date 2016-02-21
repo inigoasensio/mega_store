@@ -9,6 +9,7 @@ gem 'jquery-rails'
 
 # Front-end Framework
 gem 'foundation-rails'
+gem 'foundation_rails_helper'
 
 # Add ons
 gem 'devise' # User authentication
