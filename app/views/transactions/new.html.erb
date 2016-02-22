@@ -1,2 +1,9 @@
-<h1>Transactions#new</h1>
-<p>Find me in app/views/transactions/new.html.erb</p>
+<h2><%= params[:controller].titleize %></h2>
+
+<div class='small-10 small-centered medium-8 large-6 columns'>
+  <%= form_tag transactions_path do %>
+    <p>Please enter your payment details:</p>
+    <div id='payment-form'></div>
+    <%= submit_tag "Pay #{current_user.cart_total_price}$", class: 'button' %>
+  <%end%>
+</div>

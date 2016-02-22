@@ -1,0 +1,20 @@
+// Custom layout styles
+
+// Default font family
+@font-face {
+  font-family: 'gotham-rounded';
+  src: url(gotham-rounded-medium.otf);
+}
+
+ // Checkout-button
+.button.hollow.checkout {
+   color: green;
+   border-color: green;
+   margin-top: 30px
+}
+
+// Cart-row
+.cart-row {
+  padding: 10px
+}
+
