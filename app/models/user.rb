@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 
-  def get_cart_products
-    OrderItems.find_all_by_id(:id)
+  def get_cart_items
+    OrderItem.find_all_by_id(OrderItem.all)
+  end
+
+  def cart_total_price
+    get_cart_items.each { |item| item.price }
   end
 end

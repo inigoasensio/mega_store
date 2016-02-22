@@ -12,6 +12,7 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @order_items = @order.order_items.build(product_id: params[:order_item][:product_id])
     if @order.save
+      session[:order_id] = @order.id
       flash[:success]
     else
       redirect_to root
