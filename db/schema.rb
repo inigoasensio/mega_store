@@ -60,10 +60,10 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
 
   create_table "order_items", :force => true do |t|
     t.integer  "tracking_number"
-    t.decimal  "price",           :precision => 5,  :scale => 2
+    t.decimal  "unit_price",      :precision => 5,  :scale => 2
     t.integer  "quantity"
     t.decimal  "discount",        :precision => 10, :scale => 0
-    t.decimal  "total",           :precision => 5,  :scale => 2
+    t.decimal  "total_price",     :precision => 5,  :scale => 2
     t.string   "currency"
     t.integer  "freight"
     t.string   "size"
@@ -101,8 +101,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "unit_quantity"
-    t.decimal  "unit_price",         :precision => 5, :scale => 2
+    t.decimal  "price",              :precision => 5, :scale => 2
     t.date     "voided_at"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
@@ -142,18 +141,19 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "name"
     t.string   "last_name"
     t.integer  "phone"
+    t.boolean  "supplier",               :default => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",          :default => 0,     :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

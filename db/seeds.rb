@@ -10,10 +10,10 @@
 Product.delete_all
 
 products = [
-  { id: 1, name: 'Computer', unit_price: 599.99, description: 'computer', unit_quantity: 1 },
-  { id: 2, name: 'Tablet', unit_price: 99.99, description: 'tablet', unit_quantity: 7 },
-  { id: 3, name: 'Smartphone', unit_price: 399.99, description: 'smartphone', unit_quantity: 4 },
-  { id: 4, name: 'Camera', unit_price: 49.99, description: 'camera', unit_quantity: 2 }
+  { id: 1, name: 'Computer', price: 599.99, description: 'computer' },
+  { id: 2, name: 'Tablet', price: 99.99, description: 'tablet' },
+  { id: 3, name: 'Smartphone', price: 399.99, description: 'smartphone' },
+  { id: 4, name: 'Camera', price: 49.99, description: 'camera' }
 ]
 
 products.each do |product|

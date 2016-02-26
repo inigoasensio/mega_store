@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :last_name
       t.integer :phone
+      t.boolean :supplier, default: false
       t.attachment :avatar
 
       t.timestamps

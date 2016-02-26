@@ -2,10 +2,10 @@ class CreateOrderItems < ActiveRecord::Migration
   def change
     create_table :order_items do |t|
       t.integer :tracking_number
-      t.decimal :price, precision: 5, scale: 2
+      t.decimal :unit_price, precision: 5, scale: 2
       t.integer :quantity
       t.decimal :discount
-      t.decimal :total, precision: 5, scale: 2
+      t.decimal :total_price, precision: 5, scale: 2
       t.string :currency
       t.integer :freight
       t.string :size

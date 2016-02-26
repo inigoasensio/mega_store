@@ -6,8 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.attachment :image
-      t.integer :unit_quantity
-      t.decimal :unit_price, precision: 5, scale: 2
+      t.decimal :price, precision: 5, scale: 2
       t.date :voided_at
 
       t.timestamps
