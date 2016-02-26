@@ -4,6 +4,23 @@
   <%= form_tag transactions_path do %>
     <p>Please enter your payment details:</p>
     <div id='payment-form'></div>
-    <%= submit_tag "Pay #{current_user.cart_total_price}$", class: 'button' %>
+    <%= submit_tag "Pay #{current_order.cart_total}$", class: 'button' %>
   <%end%>
 </div>
+
+<script src="https://js.braintreegateway.com/js/braintree-2.20.0.min.js"></script>
+<script>
+  var clientToken = "<%= @client_token %>";
+
+  braintree.setup(clientToken, "dropin", {
+    container: "payment-form",
+    paypal: {
+      singleUse: false,
+      currency: 'USD',
+      locale: 'en_us'
+    },
+    dataCollector: {
+      paypal: true  // Enables fraud prevention
+    }
+  });
+</script>

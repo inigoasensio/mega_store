@@ -1,16 +1,23 @@
 class TransactionsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, :js, :json
   #before_action :authenticate_user!
   #before_action :check_cart!
 
   def new
-    generate_client_token
+    @client_token = generate_client_token
   end
 
   def create
     @result = Braintree::Transaction.sale(
-      amount: current_user.cart_total_price,
+      amount: current_order.cart_total,
       payment_method_nonce: params[:payment_method_nonce])
+      if @result.success?
+        redirect_to authenticated_root_path
+      else
+        flash[:alert] = @result.errors
+        generate_client_token
+        render :new
+      end
   end
 
   private
@@ -20,8 +27,8 @@ class TransactionsController < ApplicationController
   end
 
   def check_cart!
-    if current_user.get_cart_products.blank?
-      redirect_to root_url, alert: "Please add some items"
+    if current_order.order_items.blank?
+      redirect_to cart_path, alert: "Please add some items"
     end
   end
 end

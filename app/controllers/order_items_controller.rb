@@ -15,7 +15,8 @@ class OrderItemsController < ApplicationController
       session[:order_id] = @order.id
       flash[:success]
     else
-      redirect_to root
+      flash[:errors] = @order.errors.full_messages
+      redirect_to cart_path
     end
   end
 
@@ -29,7 +30,7 @@ class OrderItemsController < ApplicationController
   # DELETE
   def destroy
     find_order_item
-    @order_item.update_attribute(voided_at: Date.current)
+    @order_item.destroy
   end
 
   private

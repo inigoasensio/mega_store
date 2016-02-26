@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe OrderItemsController, :type => :controller do
 
   let(:order_item) { stub_model(OrderItem, id: 7) }
-  let(:product_id) { 2 }
+  let(:product) { stub_model(Product) }
 
   describe 'GET #index' do
     it 'returns all order items' do

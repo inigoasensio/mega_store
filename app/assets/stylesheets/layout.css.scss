@@ -8,9 +8,12 @@
 
  // Checkout-button
 .button.hollow.checkout {
-   color: green;
-   border-color: green;
-   margin-top: 30px
+   margin-top: 30px;
+   &:hover {
+     background-color: #3adb76;
+     color: white;
+     border-color: white
+   }
 }
 
 // Cart-row

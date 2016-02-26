@@ -3,15 +3,31 @@
   <hr>
 </div>
 
-<% @order_items.each do |order_item| %>
-  <table>
+<table>
+  <thead>
     <tr>
       <th>Tracking Number</th>
       <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
     </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.id %></td>
+        <td><%= order_item.product.name %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= number_to_currency order_item.total_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tfoot>
     <tr>
-      <td><%= order_item.id %></td>
-      <td><%= order_item.product.name %></td>
+      <td colspan='3'>Total</td>
+      <td><%= number_to_currency current_order.cart_total %></td>
     </tr>
-  </table>
-<% end %>
+  </tfoot>
+</table>

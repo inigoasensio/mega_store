@@ -1,7 +1,9 @@
+<h2><%= params[:controller].titleize %></h2>
+
 <div class='small-10 medium-8 large-8 column text-center'>
 
   <div class='text-center'>
-    <h2><%= params[:controller].titleize %></h2>
+
     <p class=''> You've selected <span class='cart-count'><%= current_order.order_items.size %></span> products</p>
       <hr>
   </div>
@@ -20,7 +22,7 @@
         <%= link_to "" do %>
           <i class='fi-x right'></i>
         <% end %>
-        <h4 class=''><%= number_to_currency order_item.product.unit_price %></h4>
+        <h4 class=''><%= number_to_currency order_item.product.price %></h4>
       </div>
     </div>
   <% end %>
@@ -28,5 +30,7 @@
 </div>
 
 <div class='small-2 medium-4 large-4 column text-center'>
-  <%= link_to "Checkout", new_transaction_path, class: 'button large hollow checkout' unless current_order.order_items.blank? %>
+  Your Total: <%= current_order.cart_total %>
+  <hr>
+  <%= link_to "Checkout", new_transaction_path, class: 'button large success hollow checkout' unless current_order.order_items.blank? %>
 </div>
