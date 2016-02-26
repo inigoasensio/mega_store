@@ -4,17 +4,22 @@ class OrderItem < ActiveRecord::Base
   belongs_to :product
 
   # Attributes
-  attr_accessible :tracking_number, :currency, :price, :quantity, :size, :status, :total, :product_id
+  attr_accessible :tracking_number, :currency, :unit_price, :quantity, :size, :status, :total_price, :product_id
 
   # Validations
-  validates :tracking_number, presence: true #:currency, :quantity, :status, :total:price,
+  validates :tracking_number, :quantity, presence: true #:currency, :quantity, :status, :total:price,
 
   # Callbacks
-  before_save :set_default_tracking_number
+  before_save :set_default_tracking_number, :set_price
+  before_validation :set_default_quantity
   after_initialize :assign_tracking_number
 
-  def total
-    price * quantity
+  def unit_price
+    product.price
+  end
+
+  def total_price
+    unit_price * quantity
   end
 
   private
@@ -29,5 +34,10 @@ class OrderItem < ActiveRecord::Base
 
   def assign_tracking_number
     self.increment(:tracking_number, by = 1)
+  end
+
+  def set_price
+    self[:unit_price] = unit_price
+    self[:total_price] = total_price
   end
 end
