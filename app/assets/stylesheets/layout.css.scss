@@ -18,6 +18,24 @@
 
 // Cart-row
 .cart-row {
-  padding: 10px
+  margin: 10px;
 }
 
+.radius-box {
+  border-radius: 10px;
+}
+
+.cart-image {
+  padding-left: 0;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.top-aligned {
+  padding-top: 15px;
+}
+
+// Transactions
+.pay-button {
+  margin-top: 25px;
+}
