@@ -97,12 +97,12 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.integer  "supplier_id"
     t.string   "name"
     t.text     "description"
+    t.decimal  "price",              :precision => 5, :scale => 2
+    t.date     "voided_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.decimal  "price",              :precision => 5, :scale => 2
-    t.date     "voided_at"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end

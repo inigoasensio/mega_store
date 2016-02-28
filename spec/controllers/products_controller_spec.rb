@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ProductsController, :type => :controller do
 
-  before do
-    sign_in @user
-  end
-
   let(:product) { stub_model(Product, id: 8) }
 
   describe 'GET #index' do

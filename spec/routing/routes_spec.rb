@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OnlineStore::Application, type: :routing do
+RSpec.describe OnlineStore::Application, type: :routing do
 
   routes { OnlineStore::Application.routes }
 

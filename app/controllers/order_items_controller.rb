@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
   # POST create
   def create
     @order = current_order
-    @order_items = @order.order_items.build(product_id: params[:order_item][:product_id])
+    @order_items = @order.order_items.build(params[:order_item])
     if @order.save
       session[:order_id] = @order.id
       flash[:success]
@@ -38,6 +38,5 @@ class OrderItemsController < ApplicationController
   def find_order_item
     @order = current_order
     @order_item = @order.order_items.find(params[:id])
-    #@order_item = OrderItem.find(params[:id])
   end
 end
