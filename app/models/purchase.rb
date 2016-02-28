@@ -7,8 +7,18 @@ class Purchase < ActiveRecord::Base
   has_one :billing_address, class_name: 'Address', as: :addressable
 
   # Attributes
-  attr_accessible :status, :purchase_type, :date
 
   # Validations
-  validates :status, :purchase_type, :date, presence: true
+  validates :status, :purchase_type, :purchase_date, presence: true
+
+  # Callbacks
+  before_save :set_defaults
+
+  private
+
+  def set_defaults
+    self.status ||= 'purchased'
+    self.purchase_type ||= 'credit card'
+    self.purchase_date ||= Time.now
+  end
 end

@@ -10,14 +10,10 @@ RSpec::describe Order, type: :model do
   end
 
   describe 'attributes' do
-    it { is_expected.to allow_mass_assignment_of(:status) }
-    it { is_expected.to allow_mass_assignment_of(:order_date) }
-    it { is_expected.to allow_mass_assignment_of(:ship_date) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:order_date) }
-    it { is_expected.to validate_presence_of(:ship_date) }
   end
 end

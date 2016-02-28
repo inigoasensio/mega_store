@@ -9,12 +9,10 @@ RSpec::describe OrderItem, type: :model do
 
   describe 'attributes' do
     it { is_expected.to allow_mass_assignment_of(:tracking_number) }
-    it { is_expected.to allow_mass_assignment_of(:price) }
     it { is_expected.to allow_mass_assignment_of(:currency) }
     it { is_expected.to allow_mass_assignment_of(:quantity) }
     it { is_expected.to allow_mass_assignment_of(:size) }
     it { is_expected.to allow_mass_assignment_of(:status) }
-    it { is_expected.to allow_mass_assignment_of(:total) }
   end
 
   describe 'validations' do
@@ -22,6 +20,5 @@ RSpec::describe OrderItem, type: :model do
   end
 
   describe 'callbacks' do
-
   end
 end

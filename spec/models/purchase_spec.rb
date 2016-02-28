@@ -11,14 +11,15 @@ RSpec::describe Purchase, type: :model do
   end
 
   describe 'attributes' do
-    it { is_expected.to allow_mass_assignment_of(:status) }
-    it { is_expected.to allow_mass_assignment_of(:purchase_type) }
-    it { is_expected.to allow_mass_assignment_of(:date) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to validate_presence_of(:purchase_type) }
-    it { is_expected.to validate_presence_of(:date) }
+    it { is_expected.to validate_presence_of(:purchase_date) }
+  end
+
+  describe 'callbacks' do
+
   end
 end

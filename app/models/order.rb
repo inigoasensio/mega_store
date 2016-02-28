@@ -9,13 +9,21 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :order_items
 
   # Validations
-  validates :order_date, :status, presence: true #:ship_date, :sales_tax,
+  validates :order_date, :status, presence: true
 
   # Callbacks
-  before_validation :set_default_values
+  before_save :set_default_values
 
   def cart_total
-   order_items.collect { |oi| oi.valid? ? oi.total_price : 0 }.sum
+    order_items.collect { |item| item.valid? ? item.total_price : 0 }.sum
+  end
+
+  def purchase_cart_item!
+    order_items.each { |order_item| purchase(order_item) }
+  end
+
+  def purchase(order_item)
+    order_items << order_item
   end
 
   private
