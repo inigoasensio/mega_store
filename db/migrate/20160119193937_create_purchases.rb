@@ -3,7 +3,7 @@ class CreatePurchases < ActiveRecord::Migration
     create_table :purchases do |t|
       t.string :status
       t.string :purchase_type
-      t.datetime :date
+      t.datetime :purchase_date
       t.references :user
       t.references :credit_card
       t.references :order

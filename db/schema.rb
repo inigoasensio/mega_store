@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   create_table "purchases", :force => true do |t|
     t.string   "status"
     t.string   "purchase_type"
-    t.datetime "date"
+    t.datetime "purchase_date"
     t.integer  "user_id"
     t.integer  "credit_card_id"
     t.integer  "order_id"
@@ -138,10 +138,11 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.integer  "phone"
     t.boolean  "supplier",               :default => false
+    t.string   "braintree_customer_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

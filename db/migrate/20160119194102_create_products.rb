@@ -5,9 +5,9 @@ class CreateProducts < ActiveRecord::Migration
       t.references :supplier
       t.string :name
       t.text :description
-      t.attachment :image
       t.decimal :price, precision: 5, scale: 2
       t.date :voided_at
+      t.attachment :image
 
       t.timestamps
     end
