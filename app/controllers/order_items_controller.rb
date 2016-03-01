@@ -12,12 +12,14 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @order_items = @order.order_items.build(params[:order_item])
     if @order.save
-      session[:order_id] = @order.id
-      flash[:success]
+#      session[:order_id] = @order.id
+#      msg = @order.order_items.length
+      flash[:success] = "Success Message"
     else
-      flash[:errors] = @order.errors.full_messages
-      redirect_to cart_path
+      flash[:alert] = @order.errors.full_messages
     end
+    #info = { msg: msg, qty: qty }
+    #render json: :
   end
 
   # PUT

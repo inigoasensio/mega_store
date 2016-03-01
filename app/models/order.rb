@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   validates :order_date, :status, presence: true
 
   # Callbacks
-  before_save :set_default_values
+  after_initialize :set_default_values
 
   def cart_total
     order_items.collect { |item| item.valid? ? item.total_price : 0 }.sum
