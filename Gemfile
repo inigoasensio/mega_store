@@ -9,7 +9,6 @@ gem 'jquery-rails'
 
 # Front-end Framework
 gem 'foundation-rails'
-gem 'foundation_rails_helper'
 
 # Add ons
 gem 'devise' # User authentication
@@ -33,4 +32,5 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'shoulda-matchers'
   gem 'pry-rails'
+  gem 'pry-byebug'
 end

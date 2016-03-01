@@ -33,6 +33,7 @@ GEM
     braintree (2.57.0)
       builder (>= 2.0.0)
     builder (3.0.4)
+    byebug (8.2.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -64,9 +65,6 @@ GEM
     foundation-rails (6.1.2.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
-    foundation_rails_helper (0.4)
-      actionpack (>= 3.0)
-      railties (>= 3.0)
     hike (1.2.3)
     i18n (0.7.0)
     journey (1.0.4)
@@ -94,6 +92,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     quiet_assets (1.1.0)
@@ -182,10 +183,10 @@ DEPENDENCIES
   figaro (~> 0.7.0)
   foundation-icons-sass-rails
   foundation-rails
-  foundation_rails_helper
   jquery-rails
   mysql2 (~> 0.3.10)
   paperclip
+  pry-byebug
   pry-rails
   quiet_assets
   rails (= 3.2.22)
