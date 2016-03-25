@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   create_table "orders", :force => true do |t|
     t.datetime "order_date"
     t.datetime "ship_date"
-    t.integer  "status"
+    t.string   "status"
     t.decimal  "sales_tax",  :precision => 10, :scale => 0
     t.integer  "user_id"
     t.integer  "shipper_id"

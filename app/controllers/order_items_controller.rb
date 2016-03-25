@@ -3,23 +3,20 @@ class OrderItemsController < ApplicationController
 
   # GET
   def index
-    @order_items = OrderItem.all
-    #@order_items = current_order.order_items
+    @order_items = current_order.order_items
   end
 
-  # POST create
+  # POST
   def create
     @order = current_order
-    @order_items = @order.order_items.build(params[:order_item])
+    @order_item = @order.order_items.build(params[:order_item])
     if @order.save
-#      session[:order_id] = @order.id
-#      msg = @order.order_items.length
-      flash[:success] = "Success Message"
+      session[:order_id] = @order.id
+      flash[:notice] = "Success"
     else
       flash[:alert] = @order.errors.full_messages
     end
-    #info = { msg: msg, qty: qty }
-    #render json: :
+    render json: @order.cart_count
   end
 
   # PUT
@@ -31,8 +28,9 @@ class OrderItemsController < ApplicationController
 
   # DELETE
   def destroy
-    find_order_item
-    @order_item.destroy
+    find_order_item.destroy
+    render json: { cart_count: @order.cart_count, cart_total: @order.cart_total }
+    flash[:success] = "Item deleted"
   end
 
   private

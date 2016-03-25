@@ -9,6 +9,7 @@
  // Checkout-button
 .button.hollow.checkout {
    margin-top: 30px;
+   border: 2px solid #3adb76;
    &:hover {
      background-color: #3adb76;
      color: white;
@@ -18,21 +19,29 @@
 
 // Cart-row
 .cart-row {
-  margin: 10px;
+  margin-bottom: 1.5em;
 }
 
 .radius-box {
   border-radius: 10px;
 }
 
-.cart-image {
-  padding-left: 0;
+.radius-left {
+  padding: 0;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
 }
 
+.radius-right {
+  padding: 0;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
 .top-aligned {
   padding-top: 15px;
+  border: 1px solid lightgrey;
 }
 
 // Transactions

@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.datetime :order_date
       t.datetime :ship_date
-      t.integer :status
+      t.string :status
       t.decimal :sales_tax
       t.references :user
       t.references :shipper

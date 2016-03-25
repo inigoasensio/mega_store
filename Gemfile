@@ -15,6 +15,8 @@ gem 'devise' # User authentication
 gem 'paperclip' # Add images to DB
 gem 'braintree' # Handle payments
 gem 'figaro', "~> 0.7.0" # Handle secrets/credentials
+gem 'state_machine' # Handle Order Status
+gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for graphing
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

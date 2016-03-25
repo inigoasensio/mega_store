@@ -1,24 +1,24 @@
 <h2><%= params[:controller].titleize %></h2>
 
-<div id='mycart' class='small-10 medium-8 large-8 column text-center'>
+<div id='cart' class='small-10 medium-8 large-8 column text-center'>
   <div class='text-center'>
-    <p class=''> You've selected <span class='cart-count'><%= current_order.order_items.size %></span> products</p>
+    <p class=''> You've selected <span class='cart-count'><%= current_order.cart_count %></span> products</p>
       <hr>
   </div>
 
   <% @order_items.each do |order_item|%>
     <div class='large-12 row cart-row'>
-      <div class='column large-2 text-center cart-image'>
+      <div class='column large-2 text-center'>
         <%= link_to order_item.product do %>
-          <%= image_tag order_item.product.image, class: 'cart-image' %>
+          <%= image_tag order_item.product.image, class: 'radius-left' %>
         <% end %>
       </div>
       <div class='column large-7 text-center top-aligned'>
         <p class=''> <%= order_item.product.name %> </p>
         <p class=''> <%= order_item.quantity %> </p>
       </div>
-      <div class='column large-3 text-center'>
-        <%= link_to "" do %>
+      <div class='column large-3 text-center radius-right'>
+        <%= link_to "", remote: true, data: { url: order_item_path(order_item) } do %>
           <i class='fi-x right'></i>
         <% end %>
         <h4 class='text-aligned'><%= number_to_currency order_item.total_price %></h4>
@@ -29,7 +29,7 @@
 </div>
 
 <div class='small-2 medium-4 large-4 column text-center'>
-  Your Total: <%= current_order.cart_total %>
+  Your Total: <span class='cart-total'><%= current_order.cart_total %></span>
   <hr>
   <%= link_to "Checkout", new_transaction_path, class: 'button large success hollow checkout' unless current_order.order_items.blank? %>
 </div>

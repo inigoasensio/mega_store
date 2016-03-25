@@ -1,16 +1,15 @@
-$(window).load ->
-  $('#mycart .fi-x').click (e) ->
-  e.preventDefault()
-  $this = $(this).closest('a')
-  url = $this.data('targeturl')
-  $.ajax url: url, type: 'put', success: (data) ->
-   $('.cart-count').html(data)
-   $this.closest('.cart-row').slideUp()
+$ ->
+  $('#cart .fi-x').click (e) ->
+    e.preventDefault()
+    $this = $(this).closest('a')
+    url = $this.data('url')
+    $.ajax url: url, type: 'DELETE', success: (data) ->
+      $('.cart-count').html(data.cart_count)
+      $('.cart-total').html(data.cart_total)
+      $this.closest('.cart-row').slideUp()
 
+$ ->
+  $('form[data-remote]').on 'ajax:success', (e, data) ->
+    e.preventDefault()
+    $('.cart-count').html(data)
 
-
-$(document).ready ->
-$("#add_to_cart").on("ajax:success", (e, data, status, xhr) ->
-    $(".cart_button").append xhr.responseText
-    ).on "ajax:error", (e, xhr, status, error) ->
-$(".cart_button").append "<p>ERROR</p>"
