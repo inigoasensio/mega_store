@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "category_id"
+    t.integer  "parent_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

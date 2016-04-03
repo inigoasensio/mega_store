@@ -14,7 +14,12 @@
       <ul>
         <% @categories.each do |category| %>
           <li class=''>
-          <%= link_to category.name %>
+            <%= link_to category.name, category_path(category) %>
+            <ul>
+              <% category.subcategories.each do |subcategory| %>
+                <li><%= link_to subcategory.name, category_path(subcategory) %></li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
       </ul>
