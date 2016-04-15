@@ -16,7 +16,11 @@ OnlineStore::Application.routes.draw do
   end
 
   authenticate :user do
-    resources :products, :order_items, :categories
+    # get '*name', to: 'categories#show'
+    resources :categories
+
+    resources :products
+    resources :order_items
     resources :transactions, only: [:new, :create]
     resource :cart, only: [:show]
   end

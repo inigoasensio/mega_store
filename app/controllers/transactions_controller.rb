@@ -11,13 +11,13 @@ class TransactionsController < ApplicationController
     @result = Braintree::Transaction.sale(
       amount: current_order.cart_total,
       payment_method_nonce: params[:payment_method_nonce])
-      if @result.success?
-        redirect_to authenticated_root_path
-      else
-        flash[:alert] = @result.errors
-        generate_client_token
-        render :new
-      end
+    if @result.success?
+      redirect_to authenticated_root_path
+    else
+      flash[:alert] = @result.errors
+      generate_client_token
+      render :new
+    end
   end
 
   private
