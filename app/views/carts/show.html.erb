@@ -8,7 +8,7 @@
 
   <% @order_items.each do |order_item|%>
     <div class='large-12 row cart-row'>
-      <div class='column large-2 text-center'>
+      <div class='column large-2 text-center radius-left'>
         <%= link_to order_item.product do %>
           <%= image_tag order_item.product.image, class: 'radius-left' %>
         <% end %>
