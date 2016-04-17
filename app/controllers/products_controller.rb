@@ -3,11 +3,16 @@ class ProductsController < ApplicationController
 
   # GET products
   def index
-    @products = Product.all
+    if params[:category].nil?
+      @products = Product.all
+    else
+      @products = Product.where(category_id: params[:category])
+    end
     @order_item = current_order.order_items.new
+    @categories = Category.includes(:subcategories).where(:parent_id => nil)
   end
 
-  # POST create
+  # POST product
   def create
     @product = Product.new(params[:product])
     @product.save
