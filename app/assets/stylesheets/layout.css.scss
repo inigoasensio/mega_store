@@ -6,7 +6,19 @@
   src: url(gotham-rounded-medium.otf);
 }
 
- // Checkout-button
+// Rounded Avatar
+.avatar {
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+
+// Navbar Dropmenu
+.dropmenu {
+  padding-right: 15px;
+}
+
+// Checkout-button
 .button.hollow.checkout {
    margin-top: 30px;
    border: 2px solid #3adb76;

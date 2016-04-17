@@ -1,0 +1,27 @@
+<div class='row column'>
+  <h1><%= params[:controller].titleize %></h1>
+  <hr>
+</div>
+
+<div class='row'>
+  <div class='medium-8 large-7 small-centered columns'>
+    <%= image_tag(current_user.avatar.url(:medium), class: 'avatar') %>
+
+    <div class='row'>
+      <ul class='tabs' data-tabs id='profile-tabs'>
+        <li class='tabs-title'><a href='#profile-panel'>Profile</a></li>
+        <li class='tabs-title'><a href='#purchases-panel'>Purchases</a></li>
+      </ul>
+
+      <div class='tabs-content' data-tabs-content='profile-tabs'>
+        <div class='tabs-panel' id='profile-panel'>
+          <%= current_user.email %>
+        </div>
+        <div class='tabs-panel' id='purchases-panel'>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

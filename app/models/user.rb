@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :email, :password, presence: true
   validates :password, confirmation: true
   # Image Validations
-  has_attached_file :avatar
+  has_attached_file :avatar, default_url: 'defaults/avatars/:style/missing_avatar.png'
   validates_attachment :avatar, size: { in: 0..1.megabytes }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 

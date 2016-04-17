@@ -8,7 +8,7 @@ OnlineStore::Application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root :to => 'home#index', as: :authenticated_root
+      root :to => 'products#index', as: :authenticated_root
     end
     unauthenticated :user do
       root :to => 'devise/sessions#new', as: :unauthenticated_root
@@ -16,8 +16,8 @@ OnlineStore::Application.routes.draw do
   end
 
   authenticate :user do
-    # get '*name', to: 'categories#show'
-    resources :categories
+    # get 'user' => 'users#show'
+    resources :users, only: [:show, :edit]
 
     resources :products
     resources :order_items
