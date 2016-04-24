@@ -1,0 +1,5 @@
+
+<%= form_for [current_user, Address.new] do |f| %>
+  <%= f.text_field :city, placeholder: 'City', class: 'form_field' %>
+  <%= f.submit "Create Address", class: 'button' %>
+<% end %>

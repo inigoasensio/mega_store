@@ -1,11 +1,18 @@
-<h2><%= params[:controller].titleize %></h2>
+<div class='large-12'>
+  <div class='large-6 column'>
+    <h2><%= params[:controller].titleize %></h2>
+  </div>
+  <hr>
+</div>
 
 <div class='small-10 small-centered medium-8 large-6 columns text-center'>
   <%= form_tag transactions_path do %>
     <%= render 'customer_form' unless current_user.has_payment_info? %>
+    <br>
     <p>Please enter your payment details:</p>
     <div id='payment-form'></div>
-    <%= submit_tag "Pay #{current_order.cart_total}$", class: 'button pay-button' %>
+    <br>
+    <%= submit_tag "Pay #{current_order.cart_total}$", class: 'button' %>
   <%end%>
 </div>
 

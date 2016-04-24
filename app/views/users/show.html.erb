@@ -1,15 +1,20 @@
-<div class='row column'>
-  <h1><%= params[:controller].titleize %></h1>
+<div class='large-12'>
+  <div class='large-6 column'>
+    <h2><%= params[:controller].titleize %></h2>
+  </div>
   <hr>
 </div>
 
-<div class='row'>
+<div class='large-12'>
   <div class='medium-8 large-7 small-centered columns'>
-    <%= image_tag(current_user.avatar.url(:medium), class: 'avatar') %>
+    <div class='callout large'>
+      <%= image_tag(current_user.avatar.url(:medium), class: 'avatar') %>
+    </div>
 
-    <div class='row'>
+    <div class=''>
       <ul class='tabs' data-tabs id='profile-tabs'>
         <li class='tabs-title'><a href='#profile-panel'>Profile</a></li>
+        <li class='tabs-title'><a href='#address-panel'>Addresses</a></li>
         <li class='tabs-title'><a href='#purchases-panel'>Purchases</a></li>
       </ul>
 
@@ -17,8 +22,12 @@
         <div class='tabs-panel' id='profile-panel'>
           <%= current_user.email %>
         </div>
+        <div class='tabs-panel' id='address-panel'>
+          <%= render partial: 'addresses/addresses', locals: { addressable: current_user } %>
+          <%= render partial: 'addresses/form', locals: { addressable: current_user } %>
+        </div>
         <div class='tabs-panel' id='purchases-panel'>
-
+          <%= current_user.purchases %>
         </div>
       </div>
     </div>
