@@ -8,7 +8,7 @@
 <div class='large-12'>
   <div class='medium-8 large-7 small-centered columns'>
     <div class='callout large'>
-      <%= image_tag(current_user.avatar.url(:medium), class: 'avatar') %>
+      <%= image_tag(current_user.avatar.url(:medium), class: 'avatar-round-square') %>
     </div>
 
     <div class=''>
@@ -21,6 +21,8 @@
       <div class='tabs-content' data-tabs-content='profile-tabs'>
         <div class='tabs-panel' id='profile-panel'>
           <%= current_user.email %>
+          <br>
+          <%= link_to 'Change your Password', edit_user_registration_path, class: 'button' %>
         </div>
         <div class='tabs-panel' id='address-panel'>
           <%= render partial: 'addresses/addresses', locals: { addressable: current_user } %>

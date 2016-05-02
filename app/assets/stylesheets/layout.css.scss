@@ -6,11 +6,20 @@
   src: url(gotham-rounded-medium.otf);
 }
 
+//
+.google_oauth2_button {
+  background-color: red
+}
+
 // Rounded Avatar
 .avatar {
   border-radius: 100px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
+}
+
+.avatar-round-square {
+  border-radius: 6px;
 }
 
 // Navbar Dropmenu
@@ -62,6 +71,7 @@
   margin-top: 25px;
 }
 
+// Forms
 .form-field {
   border: none;
   box-shadow: none;

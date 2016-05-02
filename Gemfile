@@ -18,6 +18,9 @@ gem 'figaro', "~> 0.7.0" # Handle secrets/credentials
 gem 'state_machine' # Handle Order Status
 gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for graphing
 
+# OmniAuth
+gem 'omniauth-google-oauth2'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
