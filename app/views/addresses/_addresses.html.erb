@@ -1,4 +1,5 @@
 
-<%# <%= current_user.addresses.each do |address| %>
-<%#   <%# <%= address.city %>
-<%# <% end %>
+<%= current_user.addresses.each do |address| %>
+  <% address.city %>
+  <% address.type %>
+<% end %>

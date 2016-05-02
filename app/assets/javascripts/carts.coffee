@@ -11,6 +11,6 @@ $ ->
 $ ->
   $('form[data-remote]').on 'ajax:success', (e, data) ->
     e.preventDefault()
-    $('.cart-count').html(data)
-    # $('.flash-msg').html(data)
+    $('.cart-count').html(data.cart_count)
+    # $('.flash-msg').html(data.msg)
 

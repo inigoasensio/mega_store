@@ -1,5 +1,14 @@
 
 <%= form_for [current_user, Address.new] do |f| %>
+  <%= f.radio_button :type, 'shipping', checked: true %>
+  <%= f.label :type, 'Shipping Address' %>
+  <%= f.radio_button :type, 'billing' %>
+  <%= f.label :type, 'Billing Address' %>
+
+  <%= f.text_field :address1, placeholder: 'Address', class: 'form_field' %>
   <%= f.text_field :city, placeholder: 'City', class: 'form_field' %>
+  <%= f.text_field :postal_code, placeholder: 'Postal Code', class: 'form_field' %>
+  <%= f.text_field :state, placeholder: 'State', class: 'form_field' %>
+  <%= f.text_field :country, placeholder: 'Country', class: 'form_field' %>
   <%= f.submit "Create Address", class: 'button' %>
 <% end %>
