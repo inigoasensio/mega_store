@@ -1,5 +1,11 @@
+<div class=''>
 
 <%= current_user.addresses.each do |address| %>
-  <% address.city %>
-  <% address.type %>
+  City: <%= address.city %>
+  Type: <%= address.type %>
 <% end %>
+<hr>
+
+</div>
+
+<p><a class='button' data-open="addressModal">Create Address</a></p>

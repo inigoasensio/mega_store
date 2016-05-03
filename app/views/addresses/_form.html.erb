@@ -1,8 +1,9 @@
+<div class='reveal' id='addressModal' data-reveal>
 
 <%= form_for [current_user, Address.new] do |f| %>
-  <%= f.radio_button :type, 'shipping', checked: true %>
+  <%= f.radio_button :type, 'ShippingAddress', checked: true %>
   <%= f.label :type, 'Shipping Address' %>
-  <%= f.radio_button :type, 'billing' %>
+  <%= f.radio_button :type, 'BillingAddress' %>
   <%= f.label :type, 'Billing Address' %>
 
   <%= f.text_field :address1, placeholder: 'Address', class: 'form_field' %>
@@ -12,3 +13,9 @@
   <%= f.text_field :country, placeholder: 'Country', class: 'form_field' %>
   <%= f.submit "Create Address", class: 'button' %>
 <% end %>
+
+<button class="close-button" data-close aria-label="Close modal" type="button">
+  <span aria-hidden="true">&times;</span>
+</button>
+
+</div>
