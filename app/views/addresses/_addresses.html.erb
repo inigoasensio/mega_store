@@ -1,11 +1,11 @@
 <div class=''>
-
-<%= current_user.addresses.each do |address| %>
-  City: <%= address.city %>
-  Type: <%= address.type %>
-<% end %>
-<hr>
-
+  <% current_user.addresses.each do |address| %>
+    <p>City: <%= address.city %></p>
+    <p>Type: <%= address.type %></p>
+    <p><%= link_to 'Edit', '#' %>
+    <%= link_to 'Delete', '#' %></p>
+    <hr>
+  <% end %>
 </div>
 
 <p><a class='button' data-open="addressModal">Create Address</a></p>

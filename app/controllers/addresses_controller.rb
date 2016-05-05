@@ -5,7 +5,11 @@ class AddressesController < ApplicationController
     @address = @addressable.addresses.new(params[:address])
     # @address.user = current_user
     @address.save
-    render nothing: true
+    redirect_to products_path
+  end
+
+  def edit
+    @address = @addressable.addresses.find(params[:address])
   end
 
   private
