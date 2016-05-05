@@ -7,12 +7,29 @@ class Purchase < ActiveRecord::Base
   has_one :billing_address, class_name: 'Address', as: :addressable
 
   # Attributes
+  attr_accessible :user_id, :order_id
 
   # Validations
   validates :status, :purchase_type, :purchase_date, presence: true
 
   # Callbacks
-  before_save :set_defaults
+  before_validation :set_defaults
+
+  def receipt
+    Receipts::Receipt.new(
+      id: id,
+      product: "product",
+      company: {
+        name: "",
+        address: "",
+        email: "",
+        logo: Rails.root.join("app/assets/images/defaults/default_product.png")
+      },
+      line_items: [
+        []
+      ]
+    )
+  end
 
   private
 

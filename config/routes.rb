@@ -27,12 +27,14 @@ OnlineStore::Application.routes.draw do
 
   authenticate :user do
     resources :users, only: [:show, :edit] do
-      resource :addresses
+      resources :addresses
     end
 
     resources :products, :order_items
 
     resources :transactions, only: [:new, :create]
+    resources :purchases, only: [:show]
     resource :cart, only: [:show]
+
   end
 end

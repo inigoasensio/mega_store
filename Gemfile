@@ -17,6 +17,7 @@ gem 'braintree' # Handle payments
 gem 'figaro', "~> 0.7.0" # Handle secrets/credentials
 gem 'state_machine' # Handle Order Status
 gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for graphing
+gem 'receipts' # PDF Receipts
 
 # OmniAuth
 gem 'omniauth-google-oauth2'
