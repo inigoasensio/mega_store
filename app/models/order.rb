@@ -16,6 +16,9 @@ class Order < ActiveRecord::Base
 
   # State Machine
   state_machine :status, initial: :in_progress do
+    after_transition on: :saved_for_later, do: :saved
+    after_transition on: :success, do: :purchase_cart_items!
+    after_transition placed: :purchased, do: :purchase_cart_items!
 
     # Transitions
     event :add_to_cart do
@@ -26,7 +29,7 @@ class Order < ActiveRecord::Base
       transition :placed => :saved_for_later
     end
 
-    event :purchase do
+    event :success do
       transition :placed => :purchased
     end
 
@@ -37,8 +40,13 @@ class Order < ActiveRecord::Base
     event :cancel do
       transition [:in_progress, :placed] => :cancelled
     end
+
+    state :purchased do
+      # purchase_cart_items!
+    end
   end
 
+  # Cart Methods
   def cart_total
     order_items.collect { |item| item.valid? ? item.total_price : 0 }.sum
   end
@@ -47,17 +55,24 @@ class Order < ActiveRecord::Base
     order_items.length
   end
 
-  def purchase_cart_item!
+  # Purchase Methods
+  def purchase_cart_items!
     order_items.each { |order_item| purchase(order_item) }
+    # success
   end
 
   def purchase(order_item)
-    order_items << order_item
+    order_item.update_attributes(status: 'purchased')
+    order_items.delete(order_item)
   end
 
   private
 
   def set_default_values
     self.order_date ||= Time.now
+  end
+
+  def saved
+
   end
 end

@@ -11,7 +11,7 @@ class OrderItem < ActiveRecord::Base
 
   # Callbacks
   before_save :set_default_tracking_number, :set_price
-  before_validation :set_default_quantity
+  before_validation :set_default_quantity, :set_default_status
   after_initialize :assign_tracking_number
 
   def unit_price
@@ -26,6 +26,10 @@ class OrderItem < ActiveRecord::Base
 
   def set_default_quantity
     self.quantity ||= 1
+  end
+
+  def set_default_status
+    self.status ||= 'in_cart'
   end
 
   def set_default_tracking_number

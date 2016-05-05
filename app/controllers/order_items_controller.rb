@@ -11,6 +11,7 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @order_item = @order.order_items.build(params[:order_item])
     if @order.save
+      @order.add_to_cart
       session[:order_id] = @order.id
       # flash[:notice] = "Success"
     else
