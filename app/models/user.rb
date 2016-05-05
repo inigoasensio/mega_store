@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [ :google_oauth2 ]
 
   # Attributes
-  attr_accessible :first_name, :last_name, :phone, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :phone, :email, :password, :password_confirmation, :remember_me, :braintree_customer_id
 
   # Associations
   has_many :credit_cards
@@ -27,21 +27,19 @@ class User < ActiveRecord::Base
     @user = User.from_omniauth(request.env["omniauth.auth"])
   end
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.avatar = auth.info.avatar
-    end
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.where(:email => data["email"]).first
+    user
   end
 
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.google_oauth2_data"] && session["devise.google_oauth2_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
-    end
-  end
+  # def self.new_with_session(params, session)
+  #   super.tap do |user|
+  #     if data = session["devise.google_oauth2_data"] && session["devise.google_oauth2_data"]["extra"]["raw_info"]
+  #       user.email = data["email"] if user.email.blank?
+  #     end
+  #   end
+  # end
 
   # Braintree Methods
   def has_payment_info?

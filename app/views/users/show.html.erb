@@ -55,20 +55,24 @@
         </div>
         <div class='tabs-panel' id='purchases-panel'>
           <table class='stack hover'>
+            <% current_user.purchases.each do |purchase| %>
             <thead>
               <tr>
                 <th>Id</th>
                 <th>Status</th>
                 <th>Other</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><%= current_user.purchases %></td>
-                <td><%= current_user.purchases %></td>
-                <td><%= current_user.purchases %></td>
+                <td><%= purchase.id %></td>
+                <td><%= purchase.status %></td>
+                <td><%= purchase.status %></td>
+                <td><%= link_to 'Receipt', purchase_path(purchase, format: :pdf) %></td>
               </tr>
             </tbody>
+          <% end %>
           </table>
         </div>
       </div>
