@@ -3,9 +3,7 @@ class PurchasesController < ApplicationController
 
   def show
     respond_to do |format|
-      format.pdf {
-        binding.pry
-        send_data @purchase.receipt.render,
+      format.pdf { send_data @purchase.receipt.render,
                   filename: "#{@purchase.created_at.strftime("%Y-%m-%d")}-receipt.pdf",
                   type: "application/pdf",
                   disposition: :inline
