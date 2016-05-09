@@ -1,15 +1,22 @@
 class AddressesController < ApplicationController
-  before_filter :set_addressable
+  before_filter :set_addressable, only: [ :create ]
 
   def create
     @address = @addressable.addresses.new(params[:address])
-    # @address.user = current_user
     @address.save
-    redirect_to products_path
+    redirect_to user_path(current_user)
   end
 
   def edit
-    @address = @addressable.addresses.find(params[:address])
+    # binding.pry
+    # @address = @addressable.addresses.find(params[:address])
+  end
+
+  def destroy
+    @address = current_user.addresses.find(params[:id])
+    @address.destroy
+    redirect_to user_path(current_user)
+    flash[:success] = "Address deleted successfully"
   end
 
   private

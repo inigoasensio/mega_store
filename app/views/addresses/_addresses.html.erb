@@ -2,10 +2,10 @@
   <% current_user.addresses.each do |address| %>
     <p>City: <%= address.city %></p>
     <p>Type: <%= address.type %></p>
-    <p><%= link_to 'Edit', '#' %>
-    <%= link_to 'Delete', '#' %></p>
+    <p><%= link_to 'Edit', '#', data: { open: "addressModal" }, address: address %>
+    <%= link_to 'Delete', user_address_path(current_user, address), method: :delete %></p>
     <hr>
   <% end %>
 </div>
 
-<p><a class='button' data-open="addressModal">Create Address</a></p>
+<%= link_to 'Create Address', '#', data: { open: "addressModal" }, class: 'button' %>
