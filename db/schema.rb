@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.string   "last_name"
     t.integer  "phone"
     t.boolean  "supplier",               :default => false
+    t.boolean  "admin",                  :default => false
     t.string   "braintree_customer_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"

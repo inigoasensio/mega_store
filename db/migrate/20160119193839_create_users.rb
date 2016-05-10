@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.integer :phone
       t.boolean :supplier, default: false
+      t.boolean :admin, default: false
       t.string :braintree_customer_id
       t.attachment :avatar
 
