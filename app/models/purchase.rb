@@ -26,7 +26,8 @@ class Purchase < ActiveRecord::Base
         logo: Rails.root.join("app/assets/images/defaults/default_product.png")
       },
       line_items: [
-        []
+        ["Date",           created_at.to_s],
+        ["Product",        "product"]
       ]
     )
   end
