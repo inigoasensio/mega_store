@@ -9,10 +9,12 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :order_items
 
   # Validations
-  validates :order_date, :status, presence: true
+  validates_presence_of :order_date, :status, :tracking_number
 
   # Callbacks
   after_initialize :set_default_values
+  before_save :set_default_tracking_number
+  after_initialize :assign_tracking_number
 
   # State Machine
   state_machine :status, initial: :in_progress do
@@ -58,7 +60,6 @@ class Order < ActiveRecord::Base
   # Purchase Methods
   def purchase_cart_items!
     order_items.each { |order_item| purchase(order_item) }
-    # success
   end
 
   def purchase(order_item)
@@ -70,6 +71,14 @@ class Order < ActiveRecord::Base
 
   def set_default_values
     self.order_date ||= Time.now
+  end
+
+  def set_default_tracking_number
+    self.tracking_number ||= 1
+  end
+
+  def assign_tracking_number
+    self.increment(:tracking_number, by = 1)
   end
 
   def saved

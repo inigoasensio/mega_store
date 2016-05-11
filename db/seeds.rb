@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+users = [ User.create(email: 'a@a.com', password: '1234') ]
+
+users.each do |user|
+  puts "Default user with email #{user[:email]} created"
+end
 
 Product.delete_all
 

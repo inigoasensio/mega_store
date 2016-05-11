@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :addresses, as: :addressable
 
   # Validations
-  validates :email, :password, presence: true
+  validates_presence_of :email, :password
   validates :password, confirmation: true
   # Image Validations
   has_attached_file :avatar, default_url: 'defaults/avatars/:style/missing_avatar.png'

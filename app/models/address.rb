@@ -4,10 +4,17 @@ class Address < ActiveRecord::Base
   # self.inheritance_column = :type
 
   # Attributes
-  attr_accessible :address1, :type, :city, :country, :postal_code, :state
+  attr_accessible :address1, :type, :city, :country, :postal_code, :state, :default
 
   # Validations
-  validates :address1, :type, :city, :country, :postal_code, :state, presence: true
+  validates_presence_of :address1, :type, :city, :country, :postal_code, :state
+
+  # Callbacks
+  before_save :set_default_address
+
+  def set_default_address
+    self.default ||= false
+  end
 
   # def self.type
   #   %w(shipping_address billing_address)

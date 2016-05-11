@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
   attr_accessible :name, :description, :price, :image, :category_id
 
   # Validations
-  validates :name, :description, :price, presence: true
+  validates_presence_of :name, :description, :price
   # Image Validations
   has_attached_file :image, default_url: 'defaults/default_product.png'
   validates_attachment :image, size: { in: 0..1.megabytes }

@@ -11,6 +11,8 @@
   <%= f.text_field :postal_code, placeholder: 'Postal Code', class: 'form_field' %>
   <%= f.text_field :state, placeholder: 'State', class: 'form_field' %>
   <%= f.text_field :country, placeholder: 'Country', class: 'form_field' %>
+  <%= f.check_box :default, checked: false %>
+  <hr>
   <%= f.submit "Create Address", class: 'button' %>
 <% end %>
 

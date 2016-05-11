@@ -8,5 +8,6 @@ class Category < ActiveRecord::Base
   attr_accessible :name, :parent_id
 
   # Validations
-  validates :name, presence: true
+  validates_presence_of :name
+  validates_uniqueness_of :name
 end

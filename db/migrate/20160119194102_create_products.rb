@@ -1,13 +1,16 @@
 class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
-      t.references :category
-      t.references :supplier
       t.string :name
       t.text :description
+      t.string :size
+      t.string :color
       t.decimal :price, precision: 5, scale: 2
       t.date :voided_at
       t.attachment :image
+
+      t.references :category
+      t.references :supplier
 
       t.timestamps
     end

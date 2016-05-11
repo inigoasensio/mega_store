@@ -4,7 +4,9 @@ class CreateOrders < ActiveRecord::Migration
       t.datetime :order_date
       t.datetime :ship_date
       t.string :status
+      t.integer :tracking_number
       t.decimal :sales_tax
+
       t.references :user
       t.references :shipper
 

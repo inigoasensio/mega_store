@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.integer  "postal_code"
     t.string   "country"
     t.string   "type"
+    t.boolean  "default"
     t.integer  "addressable_id"
     t.string   "addressable_type"
     t.datetime "created_at",       :null => false
@@ -59,20 +60,20 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
   add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
 
   create_table "order_items", :force => true do |t|
-    t.integer  "tracking_number"
-    t.decimal  "unit_price",      :precision => 5,  :scale => 2
-    t.integer  "quantity"
-    t.decimal  "discount",        :precision => 10, :scale => 0
-    t.decimal  "total_price",     :precision => 5,  :scale => 2
-    t.string   "currency"
-    t.integer  "freight"
-    t.string   "size"
-    t.string   "color"
     t.string   "status"
+    t.integer  "quantity"
+    t.decimal  "unit_price",  :precision => 5,  :scale => 2
+    t.decimal  "total_price", :precision => 5,  :scale => 2
+    t.string   "currency"
+    t.decimal  "discount",    :precision => 10, :scale => 0
+    t.integer  "freight"
+    t.integer  "length"
+    t.integer  "width"
+    t.integer  "height"
     t.integer  "order_id"
     t.integer  "product_id"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
@@ -82,27 +83,30 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.datetime "order_date"
     t.datetime "ship_date"
     t.string   "status"
-    t.decimal  "sales_tax",  :precision => 10, :scale => 0
+    t.integer  "tracking_number"
+    t.decimal  "sales_tax",       :precision => 10, :scale => 0
     t.integer  "user_id"
     t.integer  "shipper_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   add_index "orders", ["shipper_id"], :name => "index_orders_on_shipper_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "products", :force => true do |t|
-    t.integer  "category_id"
-    t.integer  "supplier_id"
     t.string   "name"
     t.text     "description"
+    t.string   "size"
+    t.string   "color"
     t.decimal  "price",              :precision => 5, :scale => 2
     t.date     "voided_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "category_id"
+    t.integer  "supplier_id"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end
@@ -143,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20160130215957) do
     t.integer  "phone"
     t.boolean  "supplier",               :default => false
     t.boolean  "admin",                  :default => false
+    t.boolean  "super_admin",            :default => false
     t.string   "braintree_customer_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
