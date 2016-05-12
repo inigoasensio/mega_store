@@ -5,31 +5,52 @@
   <hr>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Tracking Number</th>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
+<div class=''>
+  <ul class='tabs' data-tabs id='order-tabs'>
+    <li class='tabs-title is-active'><a href='#order-panel' aria-selected-'true'>Orders</a></li>
+    <li class='tabs-title'><a href='#open-order-panel'>Open Orders</a></li>
+    <li class='tabs-title'><a href='#cancelled-order-panel'>Cancelled Orders</a></li>
+  </ul>
 
-  <tbody>
-    <% @order_items.each do |order_item| %>
-      <tr>
-        <td><%= order_item.id %></td>
-        <td><%= order_item.product.name %></td>
-        <td><%= order_item.quantity %></td>
-        <td><%= number_to_currency order_item.total_price %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <div class='tabs-content' data-tabs-content='order-tabs'>
+    <div class='tabs-panel is-active' id='order-panel'>
 
-  <tfoot>
-    <tr>
-      <td colspan='3'>Total</td>
-      <td><%= number_to_currency current_order.cart_total %></td>
-    </tr>
-  </tfoot>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>Tracking Number</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.id %></td>
+              <td><%= order_item.product.name %></td>
+              <td><%= order_item.quantity %></td>
+              <td><%= number_to_currency order_item.total_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan='3'>Total</td>
+            <td><%= number_to_currency current_order.cart_total %></td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </div>
+
+    <div class='tabs-panel' id='open-order-panel'>
+    </div>
+
+    <div class='tabs-panel' id='cancelled-order-panel'>
+    </div>
+
+  </div>
+</div>

@@ -27,6 +27,7 @@ OnlineStore::Application.routes.draw do
 
   authenticate :user do
     resources :users, only: [:show, :edit] do
+      get 'shipping_detail', to: 'users#shipping_detail', as: :shipping_detail
       resources :addresses
     end
 
