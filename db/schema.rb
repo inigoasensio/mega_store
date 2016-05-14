@@ -9,165 +9,168 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160130215957) do
+ActiveRecord::Schema.define(version: 20160130215957) do
 
-  create_table "addresses", :force => true do |t|
-    t.text     "address1"
-    t.text     "address2"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "postal_code"
-    t.string   "country"
-    t.string   "type"
-    t.boolean  "default"
-    t.integer  "addressable_id"
-    t.string   "addressable_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+  create_table "addresses", force: :cascade do |t|
+    t.text     "address1",         limit: 65535
+    t.text     "address2",         limit: 65535
+    t.string   "city",             limit: 255
+    t.string   "state",            limit: 255
+    t.integer  "postal_code",      limit: 4
+    t.string   "country",          limit: 255
+    t.string   "type",             limit: 255
+    t.boolean  "default",          limit: 1
+    t.integer  "addressable_id",   limit: 4
+    t.string   "addressable_type", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "parent_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "parent_id",   limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "credit_cards", :force => true do |t|
-    t.string   "cardholder_name"
-    t.integer  "number"
-    t.integer  "cvv"
+  create_table "credit_cards", force: :cascade do |t|
+    t.string   "cardholder_name",     limit: 255
+    t.integer  "number",              limit: 4
+    t.integer  "cvv",                 limit: 4
     t.date     "expiration_month"
     t.date     "expiration_year"
     t.date     "expiration_date"
-    t.integer  "card_type"
-    t.string   "country_of_issuance"
-    t.integer  "issuing_bank"
-    t.boolean  "debit"
-    t.boolean  "prepaid"
-    t.string   "options"
-    t.integer  "token"
-    t.integer  "user_id"
-    t.integer  "purchase_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "card_type",           limit: 4
+    t.string   "country_of_issuance", limit: 255
+    t.integer  "issuing_bank",        limit: 4
+    t.boolean  "debit",               limit: 1
+    t.boolean  "prepaid",             limit: 1
+    t.string   "options",             limit: 255
+    t.integer  "token",               limit: 4
+    t.integer  "user_id",             limit: 4
+    t.integer  "purchase_id",         limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["purchase_id"], :name => "index_credit_cards_on_purchase_id"
-  add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
+  add_index "credit_cards", ["purchase_id"], name: "index_credit_cards_on_purchase_id", using: :btree
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
-  create_table "order_items", :force => true do |t|
-    t.string   "status"
-    t.integer  "quantity"
-    t.decimal  "unit_price",  :precision => 5,  :scale => 2
-    t.decimal  "total_price", :precision => 5,  :scale => 2
-    t.string   "currency"
-    t.decimal  "discount",    :precision => 10, :scale => 0
-    t.integer  "freight"
-    t.integer  "length"
-    t.integer  "width"
-    t.integer  "height"
-    t.integer  "order_id"
-    t.integer  "product_id"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+  create_table "order_items", force: :cascade do |t|
+    t.string   "status",      limit: 255
+    t.integer  "quantity",    limit: 4
+    t.decimal  "unit_price",              precision: 5,  scale: 2
+    t.decimal  "total_price",             precision: 5,  scale: 2
+    t.string   "currency",    limit: 255
+    t.decimal  "discount",                precision: 10
+    t.integer  "freight",     limit: 4
+    t.integer  "length",      limit: 4
+    t.integer  "width",       limit: 4
+    t.integer  "height",      limit: 4
+    t.integer  "order_id",    limit: 4
+    t.integer  "product_id",  limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
-  add_index "order_items", ["product_id"], :name => "index_order_items_on_product_id"
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
-  create_table "orders", :force => true do |t|
+  create_table "orders", force: :cascade do |t|
     t.datetime "order_date"
-    t.datetime "ship_date"
-    t.string   "status"
-    t.integer  "tracking_number"
-    t.decimal  "sales_tax",       :precision => 10, :scale => 0
-    t.integer  "user_id"
-    t.integer  "shipper_id"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.string   "status",          limit: 255
+    t.datetime "shipping_date"
+    t.string   "shipping_status", limit: 255
+    t.integer  "tracking_number", limit: 4
+    t.decimal  "sales_tax",                   precision: 10
+    t.integer  "user_id",         limit: 4
+    t.integer  "shipper_id",      limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "orders", ["shipper_id"], :name => "index_orders_on_shipper_id"
-  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+  add_index "orders", ["shipper_id"], name: "index_orders_on_shipper_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "products", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "size"
-    t.string   "color"
-    t.decimal  "price",              :precision => 5, :scale => 2
+  create_table "products", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.text     "description",        limit: 65535
+    t.string   "size",               limit: 255
+    t.string   "color",              limit: 255
+    t.decimal  "price",                            precision: 5, scale: 2
     t.date     "voided_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.integer  "category_id"
-    t.integer  "supplier_id"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.integer  "category_id",        limit: 4
+    t.integer  "supplier_id",        limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "products", ["category_id"], :name => "index_products_on_category_id"
-  add_index "products", ["supplier_id"], :name => "index_products_on_supplier_id"
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "products", ["supplier_id"], name: "index_products_on_supplier_id", using: :btree
 
-  create_table "purchases", :force => true do |t|
-    t.string   "status"
-    t.string   "purchase_type"
+  create_table "purchases", force: :cascade do |t|
+    t.string   "status",         limit: 255
+    t.string   "purchase_type",  limit: 255
     t.datetime "purchase_date"
-    t.integer  "user_id"
-    t.integer  "credit_card_id"
-    t.integer  "order_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "user_id",        limit: 4
+    t.integer  "credit_card_id", limit: 4
+    t.integer  "order_id",       limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "purchases", ["credit_card_id"], :name => "index_purchases_on_credit_card_id"
-  add_index "purchases", ["order_id"], :name => "index_purchases_on_order_id"
-  add_index "purchases", ["user_id"], :name => "index_purchases_on_user_id"
+  add_index "purchases", ["credit_card_id"], name: "index_purchases_on_credit_card_id", using: :btree
+  add_index "purchases", ["order_id"], name: "index_purchases_on_order_id", using: :btree
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
-  create_table "shippers", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "shippers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "suppliers", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "phone"
-    t.boolean  "supplier",               :default => false
-    t.boolean  "admin",                  :default => false
-    t.boolean  "super_admin",            :default => false
-    t.string   "braintree_customer_id"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.integer  "phone",                  limit: 4
+    t.boolean  "supplier",               limit: 1,   default: false
+    t.boolean  "admin",                  limit: 1,   default: false
+    t.boolean  "super_admin",            limit: 1,   default: false
+    t.string   "braintree_customer_id",  limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
-    t.string   "reset_password_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,     :null => false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

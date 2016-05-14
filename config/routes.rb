@@ -1,12 +1,27 @@
 OnlineStore::Application.routes.draw do
+  namespace :admin do
+    # resources :users
+    # resources :addresses
+    # resources :categories
+    # resources :credit_cards
+    # resources :orders
+    # resources :order_items
+    # resources :products
+    # resources :purchases
+    # resources :shippers
+    # resources :suppliers
+
+    root to: "users#index"
+  end
+
   # Devise authenticated routes
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' },
     controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   # Devise Login
-  as :user do
-    get 'login' => 'devise/registrations#new', :as => 'new_user_registration'
-  end
+  # as :user do
+  #   get 'login' => 'devise/registrations#new', :as => 'new_user_registration'
+  # end
 
   # Devise Scopes
   devise_scope :user do
@@ -22,7 +37,7 @@ OnlineStore::Application.routes.draw do
     end
 
     # Omniauth sign_out
-    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+    # delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
   authenticate :user do
