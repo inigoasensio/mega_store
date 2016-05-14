@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [ :google_oauth2 ]
 
   # Attributes
-  attr_accessible :first_name, :last_name, :phone, :email, :password, :password_confirmation, :remember_me, :braintree_customer_id
+  # attr_accessible :first_name, :last_name, :phone, :email, :password, :password_confirmation, :remember_me, :braintree_customer_id
+  attr_accessor :password, :password_confirmation
 
   # Associations
   has_many :credit_cards
@@ -15,8 +16,9 @@ class User < ActiveRecord::Base
   has_many :addresses, as: :addressable
 
   # Validations
-  validates_presence_of :email, :password
-  validates :password, confirmation: true
+  validates_presence_of :email, :password, on: :create
+  validates :password, on: :create, confirmation: true
+  validates :password, on: :update, confirmation: false, allow_blank: true
   # Image Validations
   has_attached_file :avatar, default_url: 'defaults/avatars/:style/missing_avatar.png'
   validates_attachment :avatar, size: { in: 0..1.megabytes }
@@ -38,6 +40,11 @@ class User < ActiveRecord::Base
   # Braintree Methods
   def has_payment_info?
     braintree_customer_id
+  end
+
+  def has_shipping_address?
+    binding.pry
+    addresses.find_by_type('shipping')
   end
 
 end

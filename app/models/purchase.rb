@@ -7,7 +7,7 @@ class Purchase < ActiveRecord::Base
   has_one :billing_address, class_name: 'Address', as: :addressable
 
   # Attributes
-  attr_accessible :user_id, :order_id
+  # attr_accessible :user_id, :order_id
 
   # Validations
   validates :status, :purchase_type, :purchase_date, presence: true

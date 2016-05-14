@@ -3,7 +3,7 @@ class Supplier < ActiveRecord::Base
   has_many :addresses, as: :addressable
 
   # Attributes
-  attr_accessible :name
+  # attr_accessible :name
 
   # Validations
   validates :name, presence: true

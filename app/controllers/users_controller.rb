@@ -6,7 +6,14 @@ class UsersController < ApplicationController
   end
 
   def shipping_detail
-    # @shipping_order = current_user.orders.where(status: 'purchased')
+    # Purchase.find_by_status('purchased')
+    @shipping_order = current_user.orders.find_by_status('purchased')
     @product = OrderItem.find_by_status('purchased').product
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end

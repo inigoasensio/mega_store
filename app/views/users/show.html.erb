@@ -55,7 +55,6 @@
         </div>
         <div class='tabs-panel' id='purchases-panel'>
           <table class='stack hover'>
-            <% current_user.purchases.each do |purchase| %>
             <thead>
               <tr>
                 <th>Id</th>
@@ -64,6 +63,7 @@
                 <th></th>
               </tr>
             </thead>
+            <% current_user.purchases.each do |purchase| %>
             <tbody>
               <tr>
                 <td><%= purchase.id %></td>

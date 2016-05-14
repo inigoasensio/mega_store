@@ -4,7 +4,7 @@ class Address < ActiveRecord::Base
   # self.inheritance_column = :type
 
   # Attributes
-  attr_accessible :address1, :type, :city, :country, :postal_code, :state, :default
+  # attr_accessible :address1, :type, :city, :country, :postal_code, :state, :default
 
   # Validations
   validates_presence_of :address1, :type, :city, :country, :postal_code, :state

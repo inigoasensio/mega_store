@@ -3,9 +3,6 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
 
-  # Attributes
-  attr_accessible :currency, :unit_price, :quantity, :size, :status, :total_price, :product_id
-
   # Validations
   validates_presence_of :quantity
 

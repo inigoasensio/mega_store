@@ -9,7 +9,7 @@ class OrderItemsController < ApplicationController
   # POST
   def create
     @order = current_order
-    @order_item = @order.order_items.build(params[:order_item])
+    @order_item = @order.order_items.build(order_item_params)
     if @order.save
       @order.add_to_cart
       session[:order_id] = @order.id
@@ -35,6 +35,10 @@ class OrderItemsController < ApplicationController
   end
 
   private
+
+  def order_item_params
+    params.require(:order_item).permit(:currency, :unit_price, :quantity, :size, :status, :total_price, :product_id)
+  end
 
   def find_order_item
     @order = current_order

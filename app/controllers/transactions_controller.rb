@@ -9,19 +9,24 @@ class TransactionsController < ApplicationController
 
   def create
     unless current_user.has_payment_info?
+      binding.pry
       @result = Braintree::Transaction.sale(
         amount: current_order.cart_total,
         payment_method_nonce: params[:payment_method_nonce],
         customer: {
+          first_name: params[:first_name],
+          last_name: params[:last_name],
           email: current_user.email
         },
+        shipping: Address.find_or_create_by(current_user.address),
         options: {
-          store_in_vault: true
+          store_in_vault_on_success: true
         }
       )
     else
       @result = Braintree::Transaction.sale(
-        amount: current_user.cart_total,
+        amount: current_order.cart_total,
+        shipping: current_user.has_shipping_address?,
         payment_method_nonce: params[:payment_method_nonce])
     end
 
@@ -34,7 +39,7 @@ class TransactionsController < ApplicationController
       current_user.update_attributes(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
       @purchase.save
       current_order.success
-      redirect_to authenticated_root_path, flash: { notice: "Transaction Successful" }
+      redirect_to user_shipping_detail_path(current_user), flash: { notice: "Transaction Successful" }
     else
       flash[:alert] = @result.errors
       generate_client_token

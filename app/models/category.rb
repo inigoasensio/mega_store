@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
   has_many :products
 
   # Attributes
-  attr_accessible :name, :parent_id
+  # attr_accessible :name, :parent_id
 
   # Validations
   validates_presence_of :name

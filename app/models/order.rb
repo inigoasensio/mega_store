@@ -21,6 +21,7 @@ class Order < ActiveRecord::Base
     after_transition on: :saved_for_later, do: :saved
     after_transition on: :success, do: :purchase_cart_items!
     after_transition placed: :purchased, do: :purchase_cart_items!
+    # after_transition on: :success, do: :ship_items
 
     # Transitions
     event :add_to_cart do
@@ -39,12 +40,20 @@ class Order < ActiveRecord::Base
       transition :purchased => :shipped
     end
 
+    event :delivery do
+      transition :shipped => :delivered
+    end
+
     event :cancel do
       transition [:in_progress, :placed] => :cancelled
     end
 
     state :purchased do
       # purchase_cart_items!
+      # def ship_items
+      #   binding.pry
+      #   Order.find_by_status('purchased').ship
+      # end
     end
   end
 
@@ -65,6 +74,10 @@ class Order < ActiveRecord::Base
   def purchase(order_item)
     order_item.update_attributes(status: 'purchased')
     order_items.delete(order_item)
+  end
+
+  def ship_items
+    Order.find_by_status('purchased').ship if current_user.has_shipping_address?
   end
 
   private
