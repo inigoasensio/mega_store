@@ -1,13 +1,13 @@
 OnlineStore::Application.routes.draw do
   namespace :admin do
-    # resources :users
+    resources :users
     # resources :addresses
     # resources :categories
     # resources :credit_cards
-    # resources :orders
-    # resources :order_items
-    # resources :products
-    # resources :purchases
+    resources :orders
+    resources :order_items
+    resources :products
+    resources :purchases
     # resources :shippers
     # resources :suppliers
 

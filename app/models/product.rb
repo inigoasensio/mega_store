@@ -6,9 +6,6 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_items
 
-  # Attributes
-  # attr_accessible :name, :description, :price, :image, :category_id
-
   # Validations
   validates_presence_of :name, :description, :price
   # Image Validations

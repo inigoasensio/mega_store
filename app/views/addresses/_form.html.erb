@@ -1,10 +1,10 @@
 <div class='reveal' id='addressModal' data-reveal>
 
 <%= form_for [current_user, current_user.addresses.new] do |f| %>
-  <%= f.radio_button :type, 'ShippingAddress', checked: true %>
-  <%= f.label :type, 'Shipping Address' %>
-  <%= f.radio_button :type, 'BillingAddress' %>
-  <%= f.label :type, 'Billing Address' %>
+  <%= f.radio_button :address_type, 'ShippingAddress', checked: true %>
+  <%= f.label :address_type, 'Shipping Address' %>
+  <%= f.radio_button :address_type, 'BillingAddress' %>
+  <%= f.label :address_type, 'Billing Address' %>
 
   <%= f.text_field :address1, placeholder: 'Address', class: 'form_field' %>
   <%= f.text_field :city, placeholder: 'City', class: 'form_field' %>

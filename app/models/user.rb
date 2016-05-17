@@ -42,9 +42,12 @@ class User < ActiveRecord::Base
     braintree_customer_id
   end
 
+  def braintree_data
+    Braintree::Customer.find(braintree_customer_id)
+  end
+
   def has_shipping_address?
-    binding.pry
-    addresses.find_by_type('shipping')
+    addresses.find_by_address_type('ShippingAddress')
   end
 
 end

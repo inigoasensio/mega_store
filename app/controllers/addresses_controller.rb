@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   before_filter :set_addressable, only: [ :create ]
 
   def create
-    @address = @addressable.addresses.new(params[:address])
+    @address = @addressable.addresses.new(address_params)
     @address.save
     redirect_to user_path(current_user)
   end
@@ -20,6 +20,10 @@ class AddressesController < ApplicationController
   end
 
   private
+
+  def address_params
+    params.require(:address).permit(:address1, :address_type, :city, :country, :postal_code, :state, :default)
+  end
 
   def set_addressable
     @addressable = User.find(params[:user_id])

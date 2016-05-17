@@ -7,7 +7,7 @@ class Address < ActiveRecord::Base
   # attr_accessible :address1, :type, :city, :country, :postal_code, :state, :default
 
   # Validations
-  validates_presence_of :address1, :type, :city, :country, :postal_code, :state
+  validates_presence_of :address1, :address_type, :city, :country, :postal_code, :state
 
   # Callbacks
   before_save :set_default_address

@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
   respond_to :html, :js, :json
-  before_filter :authenticate_user!
-  before_filter :check_cart!
+  before_action :authenticate_user!
+  before_action :check_cart!, :new_purchase, #:check_for_addresses
+  # helper_method :process_order
 
   def new
     @client_token = generate_client_token
@@ -18,7 +19,12 @@ class TransactionsController < ApplicationController
           last_name: params[:last_name],
           email: current_user.email
         },
-        shipping: Address.find_or_create_by(current_user.address),
+        # shipping_address: {
+        #   street_address: @address.address1,
+        #   location: @address.city,
+        #   region: @address.state,
+        #   postal_code: @address.postal_code
+        # },
         options: {
           store_in_vault_on_success: true
         }
@@ -26,19 +32,17 @@ class TransactionsController < ApplicationController
     else
       @result = Braintree::Transaction.sale(
         amount: current_order.cart_total,
-        shipping: current_user.has_shipping_address?,
+        # shipping: current_user.has_shipping_address?,
         payment_method_nonce: params[:payment_method_nonce])
     end
-
-    @purchase = Purchase.new(
-      user_id: current_user.id,
-      order_id: current_order.id
-    )
 
     if @result.success?
       current_user.update_attributes(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
       @purchase.save
+      binding.pry
       current_order.success
+      current_order = Order.new(user: current_user) if current_order.status?('purchased')
+      # process_order
       redirect_to user_shipping_detail_path(current_user), flash: { notice: "Transaction Successful" }
     else
       flash[:alert] = @result.errors
@@ -57,9 +61,30 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def process_order
+    # current_order.success
+    # current_order = Order.new(user: current_user) if current_order.status?('purchased')
+  end
+
+  def check_for_addresses
+    unless current_user.has_shipping_address?
+      @address = Address.find_or_create_by(
+        addressable_id: current_user.id,
+        address_type: 'ShippingAddress'
+      )
+    end
+  end
+
   def check_cart!
     if current_order.order_items.blank?
       redirect_to cart_path, alert: "Please add some items"
     end
+  end
+
+  def new_purchase
+    @purchase = Purchase.new(
+      user_id: current_user.id,
+      order_id: current_order.id
+    )
   end
 end

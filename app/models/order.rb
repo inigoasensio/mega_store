@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   state_machine :status, initial: :in_progress do
     after_transition on: :saved_for_later, do: :saved
     after_transition on: :success, do: :purchase_cart_items!
-    after_transition placed: :purchased, do: :purchase_cart_items!
+    # after_transition placed: :purchased, do: :purchase_cart_items!
     # after_transition on: :success, do: :ship_items
 
     # Transitions

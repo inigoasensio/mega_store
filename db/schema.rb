@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160130215957) do
     t.string   "state",            limit: 255
     t.integer  "postal_code",      limit: 4
     t.string   "country",          limit: 255
-    t.string   "type",             limit: 255
+    t.string   "address_type",     limit: 255
     t.boolean  "default",          limit: 1
     t.integer  "addressable_id",   limit: 4
     t.string   "addressable_type", limit: 255
