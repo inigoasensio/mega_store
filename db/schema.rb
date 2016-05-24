@@ -100,6 +100,9 @@ ActiveRecord::Schema.define(version: 20160130215957) do
   create_table "products", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.text     "description",        limit: 65535
+    t.integer  "sku",                limit: 4
+    t.integer  "barcode",            limit: 4
+    t.integer  "weight",             limit: 4
     t.string   "size",               limit: 255
     t.string   "color",              limit: 255
     t.decimal  "price",                            precision: 5, scale: 2

@@ -22,15 +22,16 @@
     </div>
     <div class='card-copy'>
       <h5>Pricing</h5>
-      <%= f.number_field :price, placeholder: '0,00', class: 'form_field' %>
+      <%= f.number_field :price, placeholder: '0,00', step: 0.01, class: 'form_field' %>
     </div>
     <div class='card-copy'>
       <h5>Inventory</h5>
-      <%= f.text_field :price, placeholder: 'Price', class: 'form_field' %>
+      <%= f.number_field :sku, placeholder: '', class: 'form_field' %>
+      <%= f.number_field :barcode, placeholder: '', class: 'form_field' %>
     </div>
     <div class='card-copy'>
       <h5>Shipping</h5>
-      <%= f.text_field :price, placeholder: 'Price', class: 'form_field' %>
+      <%= f.number_field :weight, placeholder: '', class: 'form_field' %>
     </div>
   </div>
   <hr>

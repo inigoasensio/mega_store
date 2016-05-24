@@ -12,10 +12,18 @@ class ProductsController < ApplicationController
     @categories = Category.includes(:subcategories).where(:parent_id => nil)
   end
 
+  def new
+    @product = Product.new
+  end
+
   # POST product
   def create
-    @product = Product.new(params[:product])
-    @product.save
+    @product = Product.new(product_params)
+    if @product.save
+      flash[:notice] = "Product created successfully"
+    else
+      flash[:notice] = @product.errors
+    end
   end
 
   # GET product
@@ -33,7 +41,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :image, :category_id)
+    params.permit(:name, :description, :sku, :barcode, :weight, :price, :image, :category_id)
   end
 
   def find_product

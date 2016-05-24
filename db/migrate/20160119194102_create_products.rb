@@ -3,6 +3,9 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.text :description
+      t.integer :sku
+      t.integer :barcode
+      t.integer :weight
       t.string :size
       t.string :color
       t.decimal :price, precision: 5, scale: 2
