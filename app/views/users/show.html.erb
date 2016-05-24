@@ -48,6 +48,7 @@
           Email: <%= current_user.email %>
           <hr>
           <%= link_to 'Change your Password', edit_user_registration_path, class: 'button alert' %>
+          <%= link_to 'Add Product', products_path, method: :post, class: 'button' %>
         </div>
         <div class='tabs-panel' id='address-panel'>
           <%= render partial: 'addresses/addresses', locals: { addressable: current_user } %>

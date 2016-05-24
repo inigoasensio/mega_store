@@ -10,7 +10,6 @@ class TransactionsController < ApplicationController
 
   def create
     unless current_user.has_payment_info?
-      binding.pry
       @result = Braintree::Transaction.sale(
         amount: current_order.cart_total,
         payment_method_nonce: params[:payment_method_nonce],
@@ -39,10 +38,7 @@ class TransactionsController < ApplicationController
     if @result.success?
       current_user.update_attributes(braintree_customer_id: @result.transaction.customer_details.id) unless current_user.has_payment_info?
       @purchase.save
-      binding.pry
-      current_order.success
-      current_order = Order.new(user: current_user) if current_order.status?('purchased')
-      # process_order
+      process_order
       redirect_to user_shipping_detail_path(current_user), flash: { notice: "Transaction Successful" }
     else
       flash[:alert] = @result.errors
@@ -62,6 +58,10 @@ class TransactionsController < ApplicationController
   end
 
   def process_order
+    @order = current_order
+    @order.success
+    @order = Order.create(user: current_user)
+    session[:order_id] = @order.id
     # current_order.success
     # current_order = Order.new(user: current_user) if current_order.status?('purchased')
   end
