@@ -1,19 +1,4 @@
 OnlineStore::Application.routes.draw do
-  namespace :admin do
-    resources :users
-    # resources :addresses
-    # resources :categories
-    # resources :credit_cards
-    resources :orders
-    resources :order_items
-    resources :products
-    resources :purchases
-    # resources :shippers
-    # resources :suppliers
-
-    root to: "users#index"
-  end
-
   # Devise authenticated routes
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' },
     controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -45,6 +30,7 @@ OnlineStore::Application.routes.draw do
       get 'shipping_detail', to: 'users#shipping_detail', as: :shipping_detail
       resources :addresses
     end
+  end
 
     resources :products, :order_items
 
@@ -52,5 +38,19 @@ OnlineStore::Application.routes.draw do
     resources :purchases, only: [:show]
     resource :cart, only: [:show]
 
+  namespace :admin do
+    resources :users
+    # resources :addresses
+    resources :categories
+    # resources :credit_cards
+    resources :orders
+    resources :order_items
+    resources :products
+    resources :purchases
+    # resources :shippers
+    # resources :suppliers
+
+    root to: "users#index"
   end
+
 end
