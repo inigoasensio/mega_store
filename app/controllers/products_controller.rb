@@ -22,8 +22,9 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:notice] = "Product created successfully"
     else
-      flash[:notice] = @product.errors
+      flash[:alert] = @product.errors.full_messages
     end
+    render :new
   end
 
   # GET product
@@ -41,7 +42,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.permit(:name, :description, :sku, :barcode, :weight, :price, :image, :category_id)
+    params.require(:product).permit(:name, :description, :sku, :barcode, :weight, :price, :image, :category_id)
   end
 
   def find_product

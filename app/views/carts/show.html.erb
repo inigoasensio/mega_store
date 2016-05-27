@@ -36,5 +36,11 @@
 <div class='small-2 medium-4 large-4 column text-center'>
   Your Total: <span class='cart-total'><%= current_order.cart_total %></span>
   <hr>
+  Subtotal: <span class='cart-subtotal'><%# <%= current_order.cart_subtotal %></span>
+  <br>
+  Shipping: <span class='cart-shipping-cost'><%# <%= current_order.cart_shipping_costs %></span>
+  <br>
+  Taxes: <span class='cart-taxes'><%# <%= current_order.cart_taxes %></span>
+  <br>
   <%= link_to "Checkout", new_transaction_path, class: 'button large success hollow checkout' unless current_order.order_items.blank? %>
 </div>

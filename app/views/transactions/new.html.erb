@@ -7,7 +7,7 @@
 
 <div class='small-10 small-centered medium-8 large-6 columns text-center'>
   <%= form_tag transactions_path do %>
-    <%= render 'customer_form' unless current_user.has_payment_info? %>
+    <%= render 'customer_form' unless current_user.has_shipping_address? %>
     <br>
     <p>Please enter your payment details:</p>
     <div id='payment-form'></div>

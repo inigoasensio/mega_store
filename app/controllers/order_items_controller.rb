@@ -14,10 +14,10 @@ class OrderItemsController < ApplicationController
       @order.add_to_cart
       session[:order_id] = @order.id
       # flash[:notice] = "Success"
+      render json: { cart_count: @order.cart_count, msg: flash[:notice] = "Added to Cart" }
     else
-      flash[:alert] = @order.errors.full_messages
+      render json: { msg: flash[:alert] = @order_item.errors.full_messages }
     end
-    render json: { cart_count: @order.cart_count, msg: flash[:notice] = "Success" }
   end
 
   # PUT
