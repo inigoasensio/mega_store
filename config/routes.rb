@@ -32,11 +32,17 @@ OnlineStore::Application.routes.draw do
     end
   end
 
-    resources :products, :order_items
+  resources :products do
 
-    resources :transactions, only: [:new, :create]
-    resources :purchases, only: [:show]
-    resource :cart, only: [:show]
+  end
+
+  get 'inventory', to: 'products#inventory', as: :inventory
+
+  resources :order_items
+
+  resources :transactions, only: [:new, :create]
+  resources :purchases, only: [:show]
+  resource :cart, only: [:show]
 
   namespace :admin do
     resources :users

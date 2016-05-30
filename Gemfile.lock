@@ -287,7 +287,6 @@ PLATFORMS
 DEPENDENCIES
   administrate (~> 0.2.0)
   administrate-field-image
-  bourbon
   braintree
   coffee-rails (~> 4.1.0)
   devise
@@ -296,7 +295,6 @@ DEPENDENCIES
   foundation-rails
   jquery-rails
   mysql2 (~> 0.3.10)
-  neat
   omniauth-google-oauth2
   paperclip
   pry-byebug
@@ -317,4 +315,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

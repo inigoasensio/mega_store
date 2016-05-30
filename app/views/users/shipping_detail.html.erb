@@ -21,7 +21,10 @@
     <br>
     <div class='warning progress radius'>
       <div class='progress-meter' style="width: 50%"></div>
-      <%= tag(:span, class: '', style: 'width: ') %>
+      <%= tag(:span, class: '', style: 'width: #{proj.completePercent}%') %>
+      <br />
+      <h5><small><%# <%= proj.completePercent %></small></h5>
+    </div>
     </div>
 
   </div>

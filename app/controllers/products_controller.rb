@@ -39,6 +39,10 @@ class ProductsController < ApplicationController
     @product.update_attribute(voided_at: Date.current)
   end
 
+  def inventory
+    @products = Product.all
+  end
+
   private
 
   def product_params
