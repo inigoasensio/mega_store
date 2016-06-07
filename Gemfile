@@ -12,6 +12,7 @@ gem 'responders'
 
 # Front-end Framework
 gem 'foundation-rails'
+gem 'bourbon';
 
 # Foundation requirements
 gem 'sass-rails',   '~> 5.0'

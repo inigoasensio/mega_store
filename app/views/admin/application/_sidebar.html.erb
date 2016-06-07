@@ -12,6 +12,7 @@ as defined by the routes in the `admin/` namespace
 </div>
 
 <ul class="sidebar__list">
+  <li class='docs-nav-title sidebar__link'><%= link_to 'Your Store', products_path %></li>
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <li>
       <%= link_to(
@@ -21,4 +22,5 @@ as defined by the routes in the `admin/` namespace
       ) %>
     </li>
   <% end %>
+  <li class='docs-nav-title sidebar__link'>Configuration</li>
 </ul>
