@@ -296,6 +296,7 @@ DEPENDENCIES
   foundation-rails
   jquery-rails
   mysql2 (~> 0.3.10)
+  neat
   omniauth-google-oauth2
   paperclip
   pry-byebug
