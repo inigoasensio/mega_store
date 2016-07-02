@@ -11,9 +11,9 @@ gem 'therubyracer'
 gem 'responders'
 
 # Front-end Framework
-gem 'foundation-rails'
-gem 'bourbon';
-gem 'neat';
+# gem 'foundation-rails'
+# gem 'bourbon';
+# gem 'neat';
 
 # Foundation requirements
 gem 'sass-rails',   '~> 5.0'
@@ -30,8 +30,8 @@ gem 'state_machine' # Handle Model States
 gem 'state_machines-activerecord'
 gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for graphing
 gem 'receipts' # Handle PDF Receipts
-gem 'administrate', '~> 0.2.0' # Admin Dashboards RAILS 4 dependency
-gem 'administrate-field-image'
+# gem 'administrate', '~> 0.2.0' # Admin Dashboards RAILS 4 dependency
+# gem 'administrate-field-image'
 
 # OmniAuth
 gem 'omniauth-google-oauth2'
